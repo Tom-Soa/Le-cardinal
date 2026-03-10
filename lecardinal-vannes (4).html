@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Le Cardinal — Brasserie Vannes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--noir:#0d0a07;--brun:#1a1209;--or:#c9a84c;--orcl:#e8c97a;--creme:#f5efe4;--gris:#8a7f72}
+html{scroll-behavior:smooth}
+body{background:var(--noir);color:var(--creme);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden}
+.page{display:none;min-height:100vh}.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(13,10,7,.96),transparent);transition:background .4s}
+nav.scrolled,nav.solid{background:rgba(13,10,7,.97);border-bottom:1px solid rgba(201,168,76,.15)}
+.nlogo{font-family:'Cinzel',serif;font-size:1rem;color:var(--or);letter-spacing:.18em;cursor:pointer}
+.nlinks{display:flex;gap:28px;align-items:center}
+.nlinks a{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:var(--creme);text-decoration:none;text-transform:uppercase;transition:color .3s;cursor:pointer}
+.nlinks a:hover,.nlinks a.act{color:var(--or)}
+.ntel{font-size:.75rem;color:var(--or);text-decoration:none;border:1px solid rgba(201,168,76,.4);padding:6px 13px;border-radius:2px;transition:all .3s;display:flex;align-items:center;gap:6px}
+.ntel:hover{background:var(--or);color:var(--noir)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{width:24px;height:1px;background:var(--or);transition:all .3s;display:block}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+.mmenu{position:fixed;inset:0;z-index:99;background:rgba(13,10,7,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transform:translateX(100%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
+.mmenu.open{transform:translateX(0)}
+.mmenu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--creme);text-decoration:none;cursor:pointer}
+.mmenu a:hover{color:var(--orcl)}
+.mmx{position:absolute;top:22px;right:24px;background:none;border:none;cursor:pointer;color:var(--or)}
+.mmdiv{width:36px;height:1px;background:rgba(201,168,76,.25)}
+.bbar{position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(13,10,7,.97);border-top:1px solid rgba(201,168,76,.15);padding:10px 16px;display:flex;gap:10px;transition:transform .3s}
+.bba{flex:1;text-align:center;text-decoration:none;padding:12px;border-radius:2px;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .3s}
+.bbc{border:1px solid rgba(201,168,76,.35);color:var(--or)}.bbc svg{stroke:var(--or)}
+.bbm{background:var(--or);color:var(--noir)}.bbm svg{stroke:var(--noir)}
+
+/* SHARED */
+section{padding:72px 24px}
+.ey{font-size:.63rem;letter-spacing:.42em;color:var(--or);text-transform:uppercase;text-align:center;margin-bottom:12px}
+.stit{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;text-align:center;color:var(--creme);line-height:1.2;margin-bottom:16px}
+.stit em{font-style:italic;color:var(--orcl)}
+.sbod{font-size:.87rem;line-height:2;color:rgba(245,239,228,.65);text-align:center;max-width:480px;margin:0 auto}
+.btnp{background:var(--or);color:var(--noir);padding:13px 30px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;border-radius:2px;transition:all .3s;display:inline-block;cursor:pointer;border:none;text-decoration:none}
+.btnp:hover{background:var(--orcl);transform:translateY(-2px)}
+.btno{border:1px solid rgba(201,168,76,.5);color:var(--or);padding:12px 26px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;border-radius:2px;transition:all .3s;display:inline-block;cursor:pointer;background:none;text-decoration:none}
+.btno:hover{background:rgba(201,168,76,.1)}
+.pimg{position:relative;overflow:hidden;background:linear-gradient(135deg,#1a0e06,#2d1a08)}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.pimg:hover img{transform:scale(1.04)}
+
+/* HERO */
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;overflow:hidden}
+.hbgw{position:absolute;inset:0;z-index:0;background:#1a0e06}
+.hbgw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hovl{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.07) 0%,transparent 60%),linear-gradient(180deg,rgba(13,10,7,.25) 0%,rgba(13,10,7,.55) 50%,rgba(13,10,7,1) 100%)}
+.hcon{position:relative;z-index:1;max-width:520px}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes pu{0%,100%{opacity:.4}50%{opacity:1}}
+.a1{opacity:0;animation:fu .8s ease .2s forwards;font-size:.68rem;letter-spacing:.38em;color:var(--or);text-transform:uppercase;margin-bottom:20px}
+.a2{opacity:0;animation:fu .9s ease .4s forwards;font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,12vw,6.5rem);font-weight:300;line-height:1;color:var(--creme);letter-spacing:.05em;margin-bottom:8px}
+.a2 em{font-style:italic;color:var(--orcl)}
+.a3{opacity:0;animation:fu .9s ease .6s forwards;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--gris);margin-bottom:36px}
+.a4{opacity:0;animation:fu .9s ease .75s forwards;font-size:.85rem;line-height:1.9;color:rgba(245,239,228,.75);max-width:380px;margin:0 auto 36px}
+.a5{opacity:0;animation:fu .9s ease .9s forwards;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hscr{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fi 1s ease 1.4s forwards}
+.hscr span{font-size:.6rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase}
+.sline{width:1px;height:36px;background:linear-gradient(to bottom,var(--or),transparent);animation:pu 2s ease-in-out infinite}
+
+/* QI */
+.qi{background:var(--brun)}
+.qig{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(201,168,76,.12);border-left:1px solid rgba(201,168,76,.12)}
+.qii{padding:24px 16px;border-right:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);text-align:center}
+.qiic{margin-bottom:10px;display:flex;justify-content:center}.qiic svg{stroke:var(--or)}
+.qil{font-size:.58rem;letter-spacing:.3em;color:var(--or);text-transform:uppercase;margin-bottom:5px}
+.qiv{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--creme);line-height:1.55}
+.phgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:500px;margin:40px auto 0}
+.phgrid .pimg{aspect-ratio:3/4;border-radius:2px}
+.hq{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--orcl);text-align:center;line-height:1.7;max-width:420px;margin:40px auto 8px;padding:0 8px}
+.haut{text-align:center;font-size:.63rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase;margin-bottom:30px}
+
+/* MENU VISUEL ACCUEIL */
+.smvp{background:var(--brun)}
+.mvg{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:36px auto 0}
+.mvc{position:relative;border-radius:3px;overflow:hidden;cursor:pointer;aspect-ratio:1}
+.mvc.wide{grid-column:span 2;aspect-ratio:16/7}
+.mvc .pimg{position:absolute;inset:0;border-radius:0}
+.mvc .pimg img{height:100%}
+.mvc:hover .pimg img{transform:scale(1.06)}
+.mvo{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,7,.88) 0%,rgba(13,10,7,.15) 65%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;z-index:1}
+.mvt{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--creme);margin-bottom:3px}
+.mvd{font-size:.68rem;color:rgba(245,239,228,.65);line-height:1.4}
+.mvp{position:absolute;top:12px;right:12px;background:var(--or);color:var(--noir);font-family:'Cinzel',serif;font-size:.65rem;padding:4px 8px;border-radius:2px;z-index:2}
+
+/* GALERIE */
+.sgal{background:var(--noir)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:36px auto 0}
+.gal .pimg{aspect-ratio:1;border-radius:2px}
+.gal .pimg.wide{grid-column:span 2;aspect-ratio:16/7}
+.igw{text-align:center;margin-top:24px}
+.igl{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.2em;color:var(--gris);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.igl:hover{color:var(--or)}.igl svg{stroke:currentColor}
+
+/* LOC */
+.sloc{background:var(--brun)}
+.locc{max-width:440px;margin:36px auto 0;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);border-radius:2px;overflow:hidden}
+.locc iframe{width:100%;height:200px;border:none;filter:saturate(0) brightness(.55) contrast(1.1);display:block}
+.locb{padding:24px 20px}
+.locr{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.locr:last-child{margin-bottom:0}
+.locr svg{stroke:var(--or);flex-shrink:0}
+.locl{font-size:.58rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:4px}
+.locv{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--creme);line-height:1.6;text-decoration:none}
+a.locv:hover{color:var(--orcl)}
+
+/* CTA */
+.ctab{position:relative;min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ctabg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,#2d0a10,#0d0a07)}
+.ctabg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ctabgo{position:absolute;inset:0;background:linear-gradient(135deg,rgba(107,30,42,.9) 0%,rgba(13,10,7,.93) 100%)}
+.ctacon{position:relative;z-index:1;text-align:center;padding:60px 24px}
+.ctacon h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,3rem);font-weight:300;color:var(--creme);margin-bottom:12px}
+.ctacon h2 em{font-style:italic;color:var(--orcl)}
+.ctacon p{font-size:.85rem;color:rgba(245,239,228,.65);margin-bottom:34px;line-height:1.8}
+.ctabs{display:flex;flex-direction:column;gap:13px;align-items:center}
+.btnl{background:var(--or);color:var(--noir);padding:14px 34px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;border-radius:2px;width:280px;transition:all .3s;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:none;cursor:pointer;text-decoration:none}
+.btnl:hover{background:var(--orcl);transform:translateY(-2px)}.btnl svg{stroke:var(--noir)}
+.btnlo{border:1px solid rgba(245,239,228,.3);color:var(--creme);padding:13px 34px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;border-radius:2px;width:280px;transition:all .3s;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:none;cursor:pointer;text-decoration:none}
+.btnlo:hover{background:rgba(255,255,255,.07)}.btnlo svg{stroke:var(--creme)}
+
+/* FOOTER */
+footer{background:var(--noir);border-top:1px solid rgba(201,168,76,.1);padding:44px 24px 28px;text-align:center}
+.ftl{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--or);letter-spacing:.2em;margin-bottom:6px}
+.ftt{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--gris);margin-bottom:24px}
+.fts{display:flex;justify-content:center;gap:14px;margin-bottom:22px}
+.fts a{width:40px;height:40px;border:1px solid rgba(201,168,76,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;color:var(--gris)}
+.fts a:hover{border-color:var(--or);color:var(--or)}.fts a svg{stroke:currentColor}
+.ftleg{font-size:.62rem;letter-spacing:.15em;color:rgba(138,127,114,.5)}
+.ftleg a{color:inherit;text-decoration:none;cursor:pointer}.ftleg a:hover{color:var(--gris)}
+
+/* HISTOIRE */
+.hhero{min-height:60vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#1a0e06}
+.hhbg{position:absolute;inset:0;z-index:0}
+.hhbg img{width:100%;height:100%;object-fit:cover;display:block}
+.hhov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.2) 0%,rgba(13,10,7,.6) 55%,rgba(13,10,7,1) 100%)}
+.hhinner{position:relative;z-index:1;padding:0 32px 56px;max-width:700px}
+.hhtit{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,10vw,5.5rem);font-weight:300;color:var(--creme);line-height:1.05;margin-bottom:14px}
+.hhtit em{font-style:italic;color:var(--orcl)}
+.hhsub{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(245,239,228,.55)}
+.hist-alt{max-width:960px;margin:0 auto}
+.ha-row{display:grid;grid-template-columns:1fr;border-bottom:1px solid rgba(201,168,76,.1)}
+.ha-row:last-child{border-bottom:none}
+.ha-img{aspect-ratio:4/3;overflow:hidden;background:#1a0e06}
+.ha-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.ha-img:hover img{transform:scale(1.03)}
+.ha-txt{padding:40px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.hnum{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;color:var(--or);text-transform:uppercase}
+.ha-txt h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--creme);line-height:1.2}
+.ha-txt h3 em{font-style:italic;color:var(--orcl)}
+.ha-txt p{font-size:.86rem;line-height:2;color:rgba(245,239,228,.62)}
+.hcit{text-align:center;padding:64px 32px;display:flex;flex-direction:column;align-items:center;gap:20px;background:var(--brun)}
+.hcit-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--or),transparent)}
+.hcit .hq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,3vw,1.5rem);font-style:italic;color:var(--orcl);line-height:1.7;max-width:480px;margin:0}
+.hcit .haut{font-size:.63rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase;margin:0}
+.mosec{background:var(--brun);padding:60px 24px}
+.mosaic4{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:680px;margin:0 auto}
+.mosaic4 .pimg{aspect-ratio:1;border-radius:2px}
+.eqsec{background:var(--noir);padding:68px 24px}
+.eqg{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:500px;margin:36px auto 0}
+.eqc{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.12);border-radius:2px;overflow:hidden;text-align:center;padding-bottom:22px}
+.eqc .pimg{aspect-ratio:1;border-radius:0}
+.eqb{padding:16px 14px 0}
+.eqn{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.12em;color:var(--creme);margin-bottom:3px}
+.eqpo{font-size:.62rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:8px}
+.eqbi{font-size:.74rem;line-height:1.7;color:rgba(245,239,228,.55)}
+
+/* MENU */
+.mhero{min-height:42vh;position:relative;display:flex;align-items:flex-end;padding:0 24px 56px;overflow:hidden;background:#1a0e06}
+.mhbg{position:absolute;inset:0;z-index:0}
+.mhbg img{width:100%;height:100%;object-fit:cover;display:block}
+.mhov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.2) 0%,rgba(13,10,7,.75) 60%,rgba(13,10,7,1) 100%)}
+.mhtxt{position:relative;z-index:1;width:100%;text-align:center}
+.tabsnav{display:flex;justify-content:center;max-width:440px;margin:36px auto 0;border:1px solid rgba(201,168,76,.2);border-radius:2px;overflow:hidden}
+.tbtn{flex:1;padding:11px 6px;text-align:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);border-right:1px solid rgba(201,168,76,.2);transition:all .3s;cursor:pointer;background:none;border-top:none;border-bottom:none}
+.tbtn:last-child{border-right:none}
+.tbtn:hover{background:rgba(201,168,76,.08);color:var(--or)}
+.tbtn.act{background:var(--or);color:var(--noir)}
+.tabc{display:none;padding:48px 20px 80px;max-width:680px;margin:0 auto}
+.tabc.act{display:block}
+.mcat{margin-bottom:40px}
+.mcatt{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:18px;padding-bottom:9px;border-bottom:1px solid rgba(201,168,76,.15)}
+.mitm{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.mitm:last-child{border-bottom:none}
+.mn{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--creme)}
+.md{font-size:.72rem;color:var(--gris);margin-top:3px;line-height:1.5}
+.mp{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--orcl);white-space:nowrap;flex-shrink:0}
+.mvsec{margin-bottom:28px}
+.mvtit{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:20px;padding-bottom:9px;border-bottom:1px solid rgba(201,168,76,.15)}
+.mvgrd{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mv{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;background:#1a0e06}
+.mv.land{aspect-ratio:16/9;grid-column:span 2}
+.mv .pimg{position:absolute;inset:0;border-radius:0}
+.mv .pimg img{height:100%}
+.mv:hover .pimg img{transform:scale(1.05)}
+.mvov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,7,.92) 0%,rgba(13,10,7,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;z-index:1}
+.mvn{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--creme);margin-bottom:3px}
+.mvde{font-size:.7rem;color:rgba(245,239,228,.6);line-height:1.4;margin-bottom:6px}
+.mvpr{font-family:'Cinzel',serif;font-size:.7rem;color:var(--or)}
+
+/* CONTACT */
+.chero{min-height:40vh;position:relative;display:flex;align-items:flex-end;padding:0 24px 56px;overflow:hidden;background:#100808}
+.chbg{position:absolute;inset:0;z-index:0}
+.chbg img{width:100%;height:100%;object-fit:cover;display:block}
+.chov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.2) 0%,rgba(13,10,7,.7) 60%,rgba(13,10,7,1) 100%)}
+.chtxt{position:relative;z-index:1;width:100%;text-align:center}
+.cgrid{display:grid;grid-template-columns:1fr;gap:0;max-width:560px;margin:0 auto;padding:56px 24px 70px}
+.cttl{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--creme);margin-bottom:26px}
+.cttl em{font-style:italic;color:var(--orcl)}
+.crow{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;padding:18px;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.1);border-radius:2px}
+.crow svg{stroke:var(--or);flex-shrink:0;margin-top:2px}
+.cl{font-size:.58rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:4px}
+.cv{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--creme);line-height:1.6;text-decoration:none}
+a.cv:hover{color:var(--orcl)}
+.cmap{border-radius:2px;overflow:hidden;border:1px solid rgba(201,168,76,.15);margin-bottom:44px}
+.cmap iframe{width:100%;height:240px;border:none;filter:saturate(0) brightness(.55) contrast(1.1);display:block}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.6rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:7px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:12px 14px;color:var(--creme);font-family:'Raleway',sans-serif;font-size:.85rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(201,168,76,.5)}
+.fg textarea{height:110px;resize:vertical}
+.fg select option{background:var(--brun)}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsub{width:100%;background:var(--or);color:var(--noir);padding:14px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:all .3s;margin-top:8px}
+.fsub:hover{background:var(--orcl)}
+.fnote{font-size:.72rem;color:var(--gris);text-align:center;margin-top:14px;line-height:1.6}
+
+/* MENTIONS */
+.mlhero{background:var(--brun);padding:110px 24px 50px;border-bottom:1px solid rgba(201,168,76,.1)}
+.mlhero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;color:var(--creme)}
+.mlhero h1 em{font-style:italic;color:var(--orcl)}
+.mlbod{padding:56px 24px 80px;max-width:620px;margin:0 auto}
+.mlsec{margin-bottom:38px}
+.mlsec h2{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.12)}
+.mlsec p{font-size:.84rem;line-height:1.95;color:rgba(245,239,228,.65);margin-bottom:10px}
+
+/* ANIM */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+@media(min-width:640px){
+  .qig{grid-template-columns:repeat(4,1fr)}
+  .mvg{grid-template-columns:repeat(4,1fr)}
+  .mvc.wide{grid-column:span 2}
+  .gal{grid-template-columns:repeat(3,1fr)}
+  .gal .pimg.wide{grid-column:span 1;aspect-ratio:1}
+  .ctabs{flex-direction:row;justify-content:center}
+  .bbar,.hbg{display:none!important}
+  .nlinks{display:flex!important}
+  .ha-row{grid-template-columns:1fr 1fr}
+  .ha-rev{direction:rtl}.ha-rev>*{direction:ltr}
+  .ha-img{aspect-ratio:auto;min-height:360px}
+  .mosaic4{grid-template-columns:repeat(4,1fr)}
+  .mosaic4 .pimg{aspect-ratio:3/4}
+  .cgrid{grid-template-columns:1fr 1fr;gap:48px}
+  .mvgrd{grid-template-columns:repeat(3,1fr)}
+  .mv.land{grid-column:span 3}
+}
+@media(max-width:639px){
+  .nlinks{display:none}.hbg{display:flex}
+  .ntel{display:none}
+  body{padding-bottom:72px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <span class="nlogo" id="nav-logo">LE CARDINAL</span>
+  <div class="nlinks">
+    <a data-page="accueil">Accueil</a>
+    <a data-page="histoire">Histoire</a>
+    <a data-page="menu">Menu</a>
+    <a data-page="contact">Contact</a>
+  </div>
+  <a href="tel:0297682423" class="ntel">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    02 97 68 24 23
+  </a>
+  <button class="hbg" id="hbg" type="button"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mmenu" id="mm">
+  <button class="mmx" id="mmx" type="button"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <a data-page="accueil">Accueil</a><div class="mmdiv"></div>
+  <a data-page="histoire">Notre Histoire</a><div class="mmdiv"></div>
+  <a data-page="menu">Le Menu</a><div class="mmdiv"></div>
+  <a data-page="contact">Contact</a>
+</div>
+
+<!-- PAGE ACCUEIL -->
+<div class="page active" id="page-accueil">
+<section class="hero">
+  <div class="hbgw"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85" alt=""/></div>
+  <div class="hovl"></div>
+  <div class="hcon">
+    <p class="a1">Bar &middot; Brasserie &middot; Vannes</p>
+    <h1 class="a2">Le <em>Cardinal</em></h1>
+    <p class="a3">Un lieu hors du temps &mdash; face &agrave; la Cath&eacute;drale</p>
+    <p class="a4">Dans le c&oelig;ur historique de Vannes, une brasserie au charme intemporel vous accueille pour d&eacute;jeuner, d&icirc;ner, ou simplement prendre un verre.</p>
+    <div class="a5">
+      <button class="btnp" data-goto="menu">Voir le menu</button>
+      <button class="btno" data-goto="contact">Nous trouver</button>
+    </div>
+  </div>
+  <div class="hscr"><div class="sline"></div><span>D&eacute;couvrir</span></div>
+</section>
+<div class="qi"><div class="qig">
+  <div class="qii"><div class="qiic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="qil">Lun &ndash; Sam</div><div class="qiv">9h &rarr; 23h</div></div>
+  <div class="qii"><div class="qiic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div><div class="qil">Dimanche</div><div class="qiv">9h30 &rarr; 19h</div></div>
+  <div class="qii"><div class="qiic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="qil">Adresse</div><div class="qiv">7 place<br/>Saint-Pierre</div></div>
+  <div class="qii"><div class="qiic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="qil">R&eacute;server</div><div class="qiv">02 97<br/>68 24 23</div></div>
+</div></div>
+<section style="background:var(--noir)">
+  <p class="ey rv">Depuis 2021</p>
+  <h2 class="stit rv">Un <em>&eacute;crin</em> au c&oelig;ur de Vannes</h2>
+  <p class="sbod rv">Nich&eacute;e dans une maison du 16e si&egrave;cle enti&egrave;rement restaur&eacute;e, face &agrave; la cath&eacute;drale Saint-Pierre.</p>
+  <div class="phgrid">
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?w=400&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&q=80" alt="" loading="lazy"/></div>
+  </div>
+  <blockquote class="hq rv">&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote>
+  <p class="haut rv">&mdash; Ernest Hemingway</p>
+  <div style="text-align:center" class="rv"><button class="btno" data-goto="histoire">D&eacute;couvrir notre histoire</button></div>
+</section>
+<section class="smvp">
+  <p class="ey rv">Cuisine &amp; Boissons</p>
+  <h2 class="stit rv">Une carte <em>g&eacute;n&eacute;reuse</em></h2>
+  <p class="sbod rv">Produits frais, hu&icirc;tres de Baden, burgers maison, cave &agrave; vins.</p>
+  <div class="mvg">
+    <div class="mvc wide rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1000&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">La Carte</div><div class="mvd">Entr&eacute;es &middot; Poissons &middot; Viandes &middot; Desserts</div></div></div>
+    <div class="mvc rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Hu&icirc;tres &amp; Mer</div><div class="mvd">Baden N&deg;3</div></div><div class="mvp">d&egrave;s 10&euro;</div></div>
+    <div class="mvc rv" data-goto="menu" data-tab="boissons"><div class="pimg"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Cave &agrave; Vins</div><div class="mvd">Vins &amp; cocktails</div></div></div>
+    <div class="mvc rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Burgers &amp; Tapas</div><div class="mvd">Faits maison</div></div><div class="mvp">d&egrave;s 17&euro;</div></div>
+    <div class="mvc rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Desserts</div><div class="mvd">Cr&eacute;ations maison</div></div><div class="mvp">d&egrave;s 7,50&euro;</div></div>
+  </div>
+  <div style="text-align:center;margin-top:32px" class="rv"><button class="btnp" data-goto="menu">Voir la carte compl&egrave;te</button></div>
+</section>
+<section class="sgal">
+  <p class="ey rv">Ambiance</p>
+  <h2 class="stit rv">Le <em>Cardinal</em> en images</h2>
+  <div class="gal">
+    <div class="pimg wide rv"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1000&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?w=500&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=500&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=500&q=80" alt="" loading="lazy"/></div>
+  </div>
+  <div class="igw rv"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank" class="igl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@lecardinal_vannes</a></div>
+</section>
+<section class="sloc">
+  <p class="ey rv">Venir nous voir</p>
+  <h2 class="stit rv">Nous <em>trouver</em></h2>
+  <div class="locc rv">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" title="Carte"></iframe>
+    <div class="locb">
+      <div class="locr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="locl">Adresse</div><a href="https://maps.google.com/?q=Le+Cardinal+Vannes" target="_blank" class="locv">7 place Saint-Pierre<br/>56000 Vannes</a></div></div>
+      <div class="locr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="locl">Horaires</div><div class="locv">Lun&ndash;Sam&nbsp;: 9h&rarr;23h<br/>Dim&nbsp;: 9h30&rarr;19h</div></div></div>
+      <div class="locr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="locl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="locv">02 97 68 24 23</a></div></div>
+    </div>
+  </div>
+</section>
+<div class="ctab">
+  <div class="ctabg"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1400&q=80" alt=""/></div>
+  <div class="ctabgo"></div>
+  <div class="ctacon">
+    <h2>R&eacute;servez <em>votre table</em></h2>
+    <p>Une envie spontan&eacute;e ou une soir&eacute;e planifi&eacute;e &mdash; nous vous attendons place Saint-Pierre.</p>
+    <div class="ctabs">
+      <a href="tel:0297682423" class="btnl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Appeler</a>
+      <button class="btnlo" data-goto="contact"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Nous contacter</button>
+    </div>
+  </div>
+</div>
+<footer><div class="ftl">LE CARDINAL</div><div class="ftt">Bar &middot; Brasserie &middot; Vannes</div><div class="fts"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="ftleg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></footer>
+</div>
+
+<!-- PAGE HISTOIRE -->
+<div class="page" id="page-histoire">
+<div class="hhero"><div class="hhbg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&q=80" alt=""/></div><div class="hhov"></div>
+  <div class="hhinner"><p class="ey" style="text-align:left;margin-bottom:14px">Notre Histoire</p><h1 class="hhtit">Le d&eacute;but d'une belle <em>histoire</em></h1><p class="hhsub">Juin 2021 &mdash; Une maison du 16e si&egrave;cle, face &agrave; la Cath&eacute;drale</p></div>
+</div>
+<div class="hist-alt">
+  <div class="ha-row rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">01 &mdash; Les origines</div><h3>Une maison du <em>16e si&egrave;cle</em></h3><p>Ouverte en juin 2021 dans une maison enti&egrave;rement restaur&eacute;e, au c&oelig;ur historique de Vannes. Apr&egrave;s des travaux importants, Le Cardinal a ouvert ses portes avec une ambition claire&nbsp;: offrir un lieu d'exception, hors du temps.</p></div></div>
+  <div class="ha-row ha-rev rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">02 &mdash; L'ambiance</div><h3>Cosy, <em>raffin&eacute;</em>, intemporel</h3><p>Une terrasse ensoleill&eacute;e face &agrave; la cath&eacute;drale Saint-Pierre. &Agrave; l'int&eacute;rieur, une d&eacute;coration tr&egrave;s soign&eacute;e aux accents feutr&eacute;s et raffin&eacute;s. Des objets chin&eacute;s, des tons profonds, une atmosph&egrave;re jazzy le jeudi soir.</p></div></div>
+  <div class="ha-row rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">03 &mdash; La cuisine</div><h3>Du march&eacute; &agrave; <em>l'assiette</em></h3><p>Tout est cuisin&eacute; sur place par le chef avec des produits frais achet&eacute;s chaque matin. Plats mijot&eacute;s, finger food, tapas, hu&icirc;tres du Golfe du Morbihan.</p></div></div>
+  <div class="ha-row ha-rev rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">04 &mdash; Les &eacute;v&eacute;nements</div><h3>Soir&eacute;es <em>&agrave; th&egrave;mes</em> &amp; jazz</h3><p>Le Cardinal anime ses soir&eacute;es avec des &eacute;v&eacute;nements &agrave; th&egrave;mes tout au long de l'ann&eacute;e. Chaque jeudi soir, laissez-vous emporter par les notes du piano.</p></div></div>
+</div>
+<div class="hcit"><div class="hcit-line"></div><blockquote class="hq">&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote><p class="haut">&mdash; Ernest Hemingway</p><div class="hcit-line"></div></div>
+<div class="mosec"><p class="ey" style="text-align:center;margin-bottom:24px">En images</p><div class="mosaic4"><div class="pimg"><img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=500&q=80" alt="" loading="lazy"/></div></div></div>
+<div class="eqsec"><p class="ey" style="text-align:center">L'&eacute;quipe</p><h2 class="stit">Ceux qui font <em>Le Cardinal</em></h2><div class="eqg"><div class="eqc rv"><div class="pimg"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=80" alt="" loading="lazy"/></div><div class="eqb"><div class="eqn">Florian</div><div class="eqpo">Chef Cuisinier</div><div class="eqbi">Passionn&eacute; de cuisine et de voyages, il choisit chaque recette avec soin.</div></div></div><div class="eqc rv"><div class="pimg"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="" loading="lazy"/></div><div class="eqb"><div class="eqn">Antoine</div><div class="eqpo">Responsable de Salle</div><div class="eqbi">Au service de votre confort depuis le premier jour.</div></div></div></div></div>
+<div style="text-align:center;padding:48px 24px 72px" class="rv"><button class="btnp" data-goto="contact">R&eacute;server une table</button></div>
+<footer><div class="ftl">LE CARDINAL</div><div class="ftt">Bar &middot; Brasserie &middot; Vannes</div><div class="fts"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="ftleg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></footer>
+</div>
+
+<!-- PAGE MENU -->
+<div class="page" id="page-menu">
+<div class="mhero"><div class="mhbg"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=1600&q=80" alt=""/></div><div class="mhov"></div><div class="mhtxt"><p class="ey">La Cuisine</p><h2 class="stit" style="margin-bottom:0">Notre <em>carte</em></h2></div></div>
+<div style="max-width:680px;margin:0 auto;padding:0 20px"><div class="tabsnav"><button class="tbtn act" data-tab="carte">La Carte</button><button class="tbtn" data-tab="menus">Menus</button><button class="tbtn" data-tab="boissons">Boissons</button></div></div>
+<div class="tabc act" id="tab-carte">
+  <div class="mcat"><div class="mcatt">Pour commencer</div>
+    <div class="mitm"><div><div class="mn">Foie gras de canard</div><div class="md">Chutney d'&eacute;chalotes au cidre</div></div><div class="mp">15&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Quesadillas</div><div class="md">Poulet, fromage frais, cheddar</div></div><div class="mp">10&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Camembert r&ocirc;ti AOP</div><div class="md">Miel, noix</div></div><div class="mp">11&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Assiette charcuterie &amp; fromage</div><div class="md">Jambon Teruel, chorizo, Comt&eacute;, tomme</div></div><div class="mp">22&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Hu&icirc;tres &amp; Mer</div>
+    <div class="mitm"><div><div class="mn">Hu&icirc;tres Baden N&deg;3 — 6 pi&egrave;ces</div></div><div class="mp">10&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Hu&icirc;tres Baden N&deg;3 — 9 pi&egrave;ces</div></div><div class="mp">15&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Hu&icirc;tres Baden N&deg;3 — 12 pi&egrave;ces</div></div><div class="mp">20&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Couteaux farcis</div><div class="md">10 pi&egrave;ces, beurre persill&eacute;</div></div><div class="mp">14,50&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Palourdes farcies</div><div class="md">12 pi&egrave;ces</div></div><div class="mp">14,50&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Entr&eacute;es</div>
+    <div class="mitm"><div><div class="mn">&OElig;uf mimosa de Mamie</div></div><div class="mp">8&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Feuillet&eacute; d'&eacute;chalotes caramel</div></div><div class="mp">11&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Velout&eacute; de c&eacute;leri rave</div></div><div class="mp">8&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Salade Caesar</div><div class="md">Poulet, parmesan, cro&ucirc;tons</div></div><div class="mp">18&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Poissons</div>
+    <div class="mitm"><div><div class="mn">Pav&eacute; de saumon</div><div class="md">Cr&egrave;me de curry breton</div></div><div class="mp">22&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Noix de Saint-Jacques</div><div class="md">Fa&ccedil;on cotriade bretonne</div></div><div class="mp">25&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Viandes</div>
+    <div class="mitm"><div><div class="mn">Entr&eacute;c&ocirc;te 300g</div><div class="md">Normande, sauce poivre de Sarawak</div></div><div class="mp">26&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Fondant d'agneau 12h</div><div class="md">&Eacute;cras&eacute; de pommes de terre</div></div><div class="mp">23&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Cuisse de canard confite</div><div class="md">Domaine de Lanvaux, sauce cidre</div></div><div class="mp">23&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Tartare charolais</div><div class="md">Au couteau, frites maison</div></div><div class="mp">20&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Saucisse bretonne</div><div class="md">Pur&eacute;e maison, jus r&eacute;duit</div></div><div class="mp">16&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Burgers</div>
+    <div class="mitm"><div><div class="mn">L'Original</div><div class="md">Steak 150g, cheddar, sauce tartare</div></div><div class="mp">18&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Le Veggie</div><div class="md">Potimarron, comt&eacute;, pickles</div></div><div class="mp">17,50&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Poulet croustillant</div><div class="md">Sauce barbecue, cheddar</div></div><div class="mp">19&euro;</div></div>
+  </div>
+  <div class="mcat"><div class="mcatt">Desserts</div>
+    <div class="mitm"><div><div class="mn">C&oelig;ur coulant chocolat</div><div class="md">Glace vanille</div></div><div class="mp">9&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Profiteroles</div><div class="md">Glace vanille, coulis chocolat</div></div><div class="mp">10,50&euro;</div></div>
+    <div class="mitm"><div><div class="mn">La Cardinal</div><div class="md">Caramel, chantilly, sp&eacute;culoos</div></div><div class="mp">9&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Glaces &amp; sorbets (2 boules)</div></div><div class="mp">5,50&euro;</div></div>
+  </div>
+</div>
+<div class="tabc" id="tab-menus">
+  <div style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);border-radius:2px;padding:28px 24px;margin-bottom:32px">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--orcl);margin-bottom:10px">Cuisine du march&eacute;</p>
+    <p style="font-size:.84rem;line-height:1.9;color:rgba(245,239,228,.6)">La formule du jour change quotidiennement selon les arriv&acirc;ges et l'inspiration du chef Florian. Produits frais achet&eacute;s chaque matin au march&eacute; de Vannes.</p>
+  </div>
+  <div class="mcat"><div class="mcatt">Formules disponibles</div>
+    <div class="mitm"><div><div class="mn">Plat du jour</div></div><div class="mp">Voir ardoise</div></div>
+    <div class="mitm"><div><div class="mn">Entr&eacute;e + Plat</div></div><div class="mp">Voir ardoise</div></div>
+    <div class="mitm"><div><div class="mn">Plat + Dessert</div></div><div class="mp">Voir ardoise</div></div>
+  </div>
+</div>
+<div class="tabc" id="tab-boissons">
+  <div class="mvsec"><div class="mvtit">Vins &amp; Cocktails</div><div class="mvgrd">
+    <div class="mv"><div class="pimg"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=500&q=80" alt="" loading="lazy"/></div><div class="mvov"><div class="mvn">Cave &agrave; Vins</div><div class="mvde">S&eacute;lection fran&ccedil;aise</div></div></div>
+    <div class="mv"><div class="pimg"><img src="https://images.unsplash.com/photo-1560512823-829485b8bf24?w=500&q=80" alt="" loading="lazy"/></div><div class="mvov"><div class="mvn">Cocktails</div><div class="mvde">Cr&eacute;ations saison</div></div></div>
+    <div class="mv"><div class="pimg"><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80" alt="" loading="lazy"/></div><div class="mvov"><div class="mvn">Champagne gourmand</div><div class="mvde">Mignardises maison</div><div class="mvpr">15&euro;</div></div></div>
+  </div></div>
+  <div class="mcat"><div class="mcatt">Sp&eacute;cialit&eacute;s</div>
+    <div class="mitm"><div><div class="mn">Le Colonel</div><div class="md">Glace citron vert, vodka</div></div><div class="mp">9&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Irish gourmand</div><div class="md">Caf&eacute; irlandais, mignardises</div></div><div class="mp">13,50&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Caf&eacute; gourmand</div></div><div class="mp">8,50&euro;</div></div>
+    <div class="mitm"><div><div class="mn">Th&eacute; gourmand</div></div><div class="mp">9&euro;</div></div>
+  </div>
+</div>
+<footer><div class="ftl">LE CARDINAL</div><div class="ftt">Bar &middot; Brasserie &middot; Vannes</div><div class="fts"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="ftleg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></footer>
+</div>
+
+<!-- PAGE CONTACT -->
+<div class="page" id="page-contact">
+<div class="chero"><div class="chbg"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=1600&q=80" alt=""/></div><div class="chov"></div><div class="chtxt"><p class="ey">Venir nous voir</p><h2 class="stit" style="margin-bottom:0">Contact &amp; <em>R&eacute;servation</em></h2></div></div>
+<div class="cgrid">
+  <div>
+    <h2 class="cttl">Nos <em>coordonn&eacute;es</em></h2>
+    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="cl">Adresse</div><a href="https://maps.google.com/?q=Le+Cardinal+Vannes" target="_blank" class="cv">7 place Saint-Pierre<br/>56000 Vannes</a></div></div>
+    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="cl">Horaires</div><div class="cv">Lun&ndash;Sam&nbsp;: 9h&rarr;23h<br/>Dim&nbsp;: 9h30&rarr;19h<br/><span style="font-size:.82rem;color:var(--gris)">Piano jazz chaque jeudi</span></div></div></div>
+    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="cl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="cv">02 97 68 24 23</a></div></div>
+    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="cl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="cv">cardinalvannes@gmail.com</a></div></div>
+    <div class="cmap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" title="Carte"></iframe></div>
+  </div>
+  <div>
+    <h2 class="cttl">Envoyer un <em>message</em></h2>
+    <form id="contact-form">
+      <div class="fgr"><div class="fg"><label>Pr&eacute;nom</label><input type="text" required/></div><div class="fg"><label>Nom</label><input type="text" required/></div></div>
+      <div class="fg"><label>Email</label><input type="email" required/></div>
+      <div class="fg"><label>T&eacute;l&eacute;phone</label><input type="tel"/></div>
+      <div class="fg"><label>Motif</label><select><option>R&eacute;servation</option><option>&Eacute;v&eacute;nement priv&eacute;</option><option>Renseignement</option><option>Autre</option></select></div>
+      <div class="fgr"><div class="fg"><label>Date</label><input type="date"/></div><div class="fg"><label>Personnes</label><input type="number" min="1" max="50"/></div></div>
+      <div class="fg"><label>Message</label><textarea></textarea></div>
+      <button type="submit" class="fsub">Envoyer</button>
+      <p class="fnote">Ou appelez le <a href="tel:0297682423" style="color:var(--or)">02 97 68 24 23</a></p>
+    </form>
+  </div>
+</div>
+<footer><div class="ftl">LE CARDINAL</div><div class="ftt">Bar &middot; Brasserie &middot; Vannes</div><div class="fts"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="ftleg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></footer>
+</div>
+
+<!-- PAGE MENTIONS -->
+<div class="page" id="page-mentions">
+<div class="mlhero"><p class="ey" style="text-align:left;margin-bottom:10px">Informations l&eacute;gales</p><h1>Mentions <em>l&eacute;gales</em></h1></div>
+<div class="mlbod">
+  <div class="mlsec"><h2>1. &Eacute;dition</h2><p>Le Cardinal &mdash; 7 place Saint-Pierre, 56000 Vannes<br/>Responsable&nbsp;: M. Mickael Cousin &mdash; 02 97 68 24 23<br/>Webmaster&nbsp;: Agence Close-up &mdash; 02.90.73.53.13<br/>H&eacute;bergeur&nbsp;: OVH &mdash; 2 rue Kellermann, 59100 Roubaix</p></div>
+  <div class="mlsec"><h2>2. Propri&eacute;t&eacute; intellectuelle</h2><p>L'&eacute;diteur est propri&eacute;taire de tous les &eacute;l&eacute;ments accessibles sur le site. Toute reproduction non autoris&eacute;e est interdite.</p></div>
+  <div class="mlsec"><h2>3. Donn&eacute;es personnelles</h2><p>Le site ne collecte aucune information personnelle. Conform&eacute;ment &agrave; la loi n&deg; 78-87 du 6 janvier 1978.</p></div>
+  <div style="text-align:center;margin-top:44px"><button class="btno" data-goto="accueil">&larr; Retour &agrave; l'accueil</button></div>
+</div>
+<footer><div class="ftl">LE CARDINAL</div><div class="ftt">Bar &middot; Brasserie &middot; Vannes</div><div class="fts"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="ftleg"><span style="opacity:.5">Mentions l&eacute;gales</span> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></footer>
+</div>
+
+<!-- BOTTOM BAR MOBILE -->
+<div class="bbar" id="bbar">
+  <a href="tel:0297682423" class="bba bbc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Appeler</a>
+  <div class="bba bbm" data-goto="menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Le menu</div>
+</div>
+
+<script>
+(function() {
+  // ---- Navigation ----
+  function goTo(page, tab) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    var target = document.getElementById('page-' + page);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.nlinks a[data-page]').forEach(function(a) {
+      a.classList.toggle('act', a.dataset.page === page);
+    });
+    var nav = document.getElementById('nav');
+    if (nav) { nav.classList.toggle('solid', page !== 'accueil'); nav.classList.remove('scrolled'); }
+    window.scrollTo(0, 0);
+    if (tab) { setTimeout(function() { switchTab(tab); }, 50); }
+    setTimeout(initReveal, 80);
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll('.tbtn').forEach(function(b) { b.classList.remove('act'); });
+    document.querySelectorAll('.tabc').forEach(function(c) { c.classList.remove('act'); });
+    document.querySelectorAll('.tbtn[data-tab="' + name + '"]').forEach(function(b) { b.classList.add('act'); });
+    var t = document.getElementById('tab-' + name);
+    if (t) t.classList.add('act');
+  }
+
+  function initReveal() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('vis'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.page.active .rv').forEach(function(el) {
+      el.classList.remove('vis');
+      obs.observe(el);
+    });
+  }
+
+  // ---- Event delegation — aucun onclick inline ----
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-goto]');
+    if (el) {
+      goTo(el.dataset.goto, el.dataset.tab || null);
+      return;
+    }
+    var tabBtn = e.target.closest('.tbtn[data-tab]');
+    if (tabBtn) {
+      switchTab(tabBtn.dataset.tab);
+      return;
+    }
+    var navLink = e.target.closest('.nlinks a[data-page], .mmenu a[data-page]');
+    if (navLink) {
+      goTo(navLink.dataset.page);
+      closeMM();
+      return;
+    }
+  });
+
+  // ---- Hamburger ----
+  function closeMM() {
+    var hb = document.getElementById('hbg'), mm = document.getElementById('mm');
+    if (hb) hb.classList.remove('open');
+    if (mm) mm.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var hb = document.getElementById('hbg'), mm = document.getElementById('mm'), mmx = document.getElementById('mmx');
+    var navLogo = document.getElementById('nav-logo');
+    if (navLogo) navLogo.addEventListener('click', function() { goTo('accueil'); });
+    if (hb && mm) {
+      hb.addEventListener('click', function() {
+        hb.classList.toggle('open'); mm.classList.toggle('open');
+        document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+    if (mmx) mmx.addEventListener('click', closeMM);
+
+    // Formulaire contact
+    var form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('.fsub');
+        btn.textContent = 'Message envoyé ✓'; btn.style.background = '#4a7c59'; btn.disabled = true;
+        setTimeout(function() { btn.textContent = 'Envoyer'; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000);
+      });
+    }
+
+    // Scroll nav + bottom bar
+    var lastY = 0;
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('nav'), bbar = document.getElementById('bbar');
+      var active = document.querySelector('.page.active');
+      if (nav && active && active.id === 'page-accueil') nav.classList.toggle('scrolled', window.scrollY > 60);
+      if (bbar) bbar.style.transform = (window.scrollY > lastY && window.scrollY > 200) ? 'translateY(100%)' : 'translateY(0)';
+      lastY = window.scrollY;
+    });
+
+    initReveal();
+  });
+})();
+</script>
+</body>
+</html>
