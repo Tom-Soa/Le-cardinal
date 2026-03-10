@@ -4,272 +4,272 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Le Cardinal Vannes &mdash; Bar &middot; Brasserie &middot; Restaurant</title>
-<meta name="description" content="Bar-brasserie au coeur de Vannes, face à la cathédrale Saint-Pierre. Cuisine traditionnelle, huîtres de Baden, cave à vins, terrasse ensoleillée."/>
+<meta name="description" content="Bar-brasserie au coeur de Vannes, face à la cathédrale Saint-Pierre."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--noir:#0d0a07;--brun:#1a1209;--brun2:#2a1608;--or:#c9a84c;--orcl:#e8c97a;--creme:#f5efe4;--gris:#8a7f72}
+:root{
+  --noir:#1a1209;--brun:#2a1608;--brun2:#3d2010;
+  --or:#b8922e;--orcl:#9a7820;
+  --creme:#f5efe4;--gris:#6b6058;
+  --bg:#ffffff;--txt:#1a1209;--txt2:#4a3f38;--border:#e0d8cf;
+}
 html{scroll-behavior:smooth}
-body{background:var(--noir);color:var(--creme);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;font-variant-numeric:lining-nums}
-
-/* PAGES */
+body{background:var(--bg);color:var(--txt);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;font-variant-numeric:lining-nums}
 .page{display:none;min-height:100vh}.page.active{display:block}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(13,10,7,.96),transparent);transition:background .4s,border-color .4s}
-nav.scrolled,nav.solid{background:rgba(13,10,7,.97);border-bottom:1px solid rgba(201,168,76,.15)}
-.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
-.nav-logo img{height:40px;width:40px;object-fit:contain}
-.nav-logo span{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.22em;color:var(--creme)}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;background:var(--noir);border-bottom:1px solid rgba(201,168,76,.15)}
+.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer;text-decoration:none}
+.nav-logo img{height:38px;width:38px;object-fit:contain}
+.nav-logo span{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.22em;color:var(--creme)}
 .nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:var(--creme);text-decoration:none;text-transform:uppercase;transition:color .3s;cursor:pointer}
+.nav-links a{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(245,239,228,.75);text-decoration:none;text-transform:uppercase;transition:color .3s;cursor:pointer}
 .nav-links a:hover,.nav-links a.act{color:var(--or)}
-.nav-tel{font-size:.7rem;color:var(--or);text-decoration:none;border:1px solid rgba(201,168,76,.4);padding:7px 14px;border-radius:2px;transition:all .3s;display:flex;align-items:center;gap:6px;font-family:'Cinzel',serif;letter-spacing:.1em;white-space:nowrap}
-.nav-tel:hover{background:var(--or);color:var(--noir)}
+.nav-tel{font-size:.68rem;color:var(--or);text-decoration:none;border:1px solid rgba(184,146,46,.4);padding:7px 14px;border-radius:2px;transition:all .3s;display:flex;align-items:center;gap:6px;font-family:'Cinzel',serif;letter-spacing:.1em;white-space:nowrap}
+.nav-tel:hover{background:var(--or);color:#fff}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hamburger span{width:24px;height:1px;background:var(--or);transition:all .3s;display:block}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-
-/* MOBILE MENU */
-.mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(13,10,7,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
+.mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(26,18,9,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateX(100%);transition:transform .4s cubic-bezier(.76,0,.24,1)}
 .mobile-menu.open{transform:translateX(0)}
 .mobile-menu a{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.18em;color:rgba(245,239,228,.85);text-decoration:none;cursor:pointer;transition:color .3s}
 .mobile-menu a:hover{color:var(--or)}
 .mm-div{width:40px;height:1px;background:rgba(201,168,76,.2)}
-.mm-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--creme);cursor:pointer;font-size:1.8rem;line-height:1}
-
-/* MOBILE BOTTOM BAR */
-.bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--brun2);border-top:1px solid rgba(201,168,76,.15)}
+.mm-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--creme);cursor:pointer;font-size:2rem;line-height:1}
+.bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--noir);border-top:1px solid rgba(201,168,76,.15)}
 .bb-inner{display:flex}
-.bb-btn{flex:1;padding:14px 8px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.14em;color:var(--creme);text-decoration:none;cursor:pointer;border:none;background:none;text-transform:uppercase}
-.bb-btn.gold{background:var(--or);color:var(--noir)}
+.bb-btn{flex:1;padding:15px 8px;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.14em;color:var(--creme);text-decoration:none;cursor:pointer;border:none;background:none;text-transform:uppercase}
+.bb-btn.gold{background:var(--or);color:#fff}
 .bb-sep{width:1px;background:rgba(201,168,76,.15)}
-@media(max-width:639px){
-  .nav-links,.nav-tel{display:none!important}
-  .hamburger{display:flex}
-  .bottom-bar{display:block}
-  body{padding-bottom:56px}
-}
+@media(max-width:639px){.nav-links,.nav-tel{display:none!important}.hamburger{display:flex}.bottom-bar{display:block}body{padding-bottom:58px}}
 
-/* UTILITIES */
-.eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.35em;color:var(--or);text-transform:uppercase;text-align:center;margin-bottom:12px}
-.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:300;color:var(--creme);text-align:center;line-height:1.15;margin-bottom:16px}
-.sec-title em{font-style:italic;color:var(--orcl)}
-.sec-body{font-size:.85rem;line-height:1.9;color:rgba(245,239,228,.65);text-align:center;max-width:480px;margin:0 auto 28px}
-.btn-p{background:var(--or);color:var(--noir);border:none;padding:13px 30px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s;border-radius:2px}
-.btn-p:hover{background:var(--orcl)}
-.btn-o{background:transparent;color:var(--creme);border:1px solid rgba(245,239,228,.35);padding:13px 30px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px}
-.btn-o:hover{border-color:var(--or);color:var(--or)}
-.btn-lg{display:inline-flex;align-items:center;gap:9px;background:var(--or);color:var(--noir);padding:15px 32px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .2s;border-radius:2px}
-.btn-lg:hover{background:var(--orcl)}
-.btn-lg-o{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--creme);border:1px solid rgba(245,239,228,.35);padding:15px 32px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:2px}
-.btn-lg-o:hover{border-color:var(--or);color:var(--or)}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
-.reveal.vis{opacity:1;transform:none}
-
-/* HERO */
+/* ── HERO (plein écran sombre) ── */
 .hero{min-height:100svh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
-.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.07) 0%,transparent 60%),linear-gradient(180deg,rgba(13,10,7,.35) 0%,rgba(13,10,7,.6) 55%,rgba(13,10,7,1) 100%)}
-.hero-content{position:relative;z-index:1;max-width:520px}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,168,76,.06) 0%,transparent 60%),linear-gradient(180deg,rgba(13,10,7,.55) 0%,rgba(13,10,7,.75) 55%,rgba(13,10,7,1) 100%)}
+.hero-content{position:relative;z-index:1;max-width:520px;background:rgba(13,10,7,.38);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);padding:36px 40px;border-radius:4px;border:1px solid rgba(255,255,255,.06)}
 .hero-eyebrow{font-size:.65rem;letter-spacing:.38em;color:var(--or);text-transform:uppercase;font-family:'Cinzel',serif;margin-bottom:20px;opacity:0;animation:fadeUp .8s ease .2s forwards}
 .hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,12vw,6.5rem);font-weight:300;line-height:1;color:var(--creme);letter-spacing:.05em;margin-bottom:8px;opacity:0;animation:fadeUp .9s ease .4s forwards}
-.hero h1 em{font-style:italic;color:var(--orcl)}
-.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--gris);margin-bottom:30px;opacity:0;animation:fadeUp .9s ease .6s forwards}
+.hero h1 em{font-style:italic;color:#e8c97a}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(245,239,228,.7);margin-bottom:30px;opacity:0;animation:fadeUp .9s ease .6s forwards}
 .hero-desc{font-size:.85rem;line-height:1.9;color:rgba(245,239,228,.75);max-width:380px;margin:0 auto 36px;opacity:0;animation:fadeUp .9s ease .75s forwards}
 .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .9s forwards}
 .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeIn 1s ease 1.4s forwards}
-.hero-scroll span{font-size:.6rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase}
+.hero-scroll span{font-size:.6rem;letter-spacing:.3em;color:rgba(245,239,228,.5);text-transform:uppercase}
 .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--or),transparent);animation:pulse 2s ease-in-out infinite}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
-/* QUICK INFO */
+/* ── UTILITIES ── */
+.eyebrow{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;color:var(--or);text-transform:uppercase;text-align:center;margin-bottom:12px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:300;color:var(--txt);text-align:center;line-height:1.15;margin-bottom:14px}
+.sec-title em{font-style:italic;color:var(--or)}
+.sec-body{font-size:.85rem;line-height:1.9;color:var(--txt2);text-align:center;max-width:480px;margin:0 auto 28px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+.reveal.vis{opacity:1;transform:none}
+.btn-p{background:var(--or);color:#fff;border:none;padding:13px 30px;font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background .2s}
+.btn-p:hover{background:var(--orcl)}
+.btn-o{background:transparent;color:var(--txt);border:1px solid rgba(26,18,9,.3);padding:13px 30px;font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
+.btn-o:hover{border-color:var(--or);color:var(--or)}
+.btn-o-w{background:transparent;color:var(--creme);border:1px solid rgba(245,239,228,.35);padding:13px 30px;font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
+.btn-o-w:hover{border-color:var(--or);color:var(--or)}
+.btn-lg{display:inline-flex;align-items:center;gap:9px;background:var(--or);color:#fff;padding:14px 30px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;border-radius:2px;transition:background .2s}
+.btn-lg:hover{background:var(--orcl)}
+.btn-lg-o{display:inline-flex;align-items:center;gap:9px;background:transparent;color:var(--creme);border:1px solid rgba(245,239,228,.35);padding:14px 30px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s}
+.btn-lg-o:hover{border-color:var(--or);color:var(--or)}
+
+/* ── QUICK INFO ── */
 .qi{background:var(--brun)}
 .qi-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(201,168,76,.12);border-left:1px solid rgba(201,168,76,.12)}
-.qi-item{padding:22px 14px;border-right:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);text-align:center}
-.qi-ico{margin-bottom:9px;display:flex;justify-content:center}.qi-ico svg{stroke:var(--or)}
-.qi-lbl{font-size:.55rem;letter-spacing:.3em;color:var(--or);text-transform:uppercase;margin-bottom:5px;font-family:'Cinzel',serif}
-.qi-val{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--creme);line-height:1.5}
+.qi-item{padding:20px 12px;border-right:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12);text-align:center}
+.qi-ico{margin-bottom:8px;display:flex;justify-content:center}.qi-ico svg{stroke:var(--or)}
+.qi-lbl{font-size:.53rem;letter-spacing:.3em;color:var(--or);text-transform:uppercase;margin-bottom:4px;font-family:'Cinzel',serif}
+.qi-val{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--creme);line-height:1.5}
 @media(max-width:639px){.qi-grid{grid-template-columns:1fr 1fr}}
 
-/* SECTION HISTOIRE APERCU */
-.s-histoire{background:var(--noir);padding:72px 24px}
-.h-photos{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:500px;margin:36px auto 0}
-.h-photos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;transition:transform .4s}
-.h-photos img:hover{transform:scale(1.02)}
-.h-quote{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--orcl);text-align:center;line-height:1.7;max-width:420px;margin:36px auto 8px;padding:0 8px}
-.h-author{text-align:center;font-size:.62rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase;margin-bottom:28px}
+/* ── SECTION HISTOIRE (blanc) ── */
+.s-histoire{background:#fff;padding:72px 24px}
+.h-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:900px;margin:32px auto 0}
+.h-photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.h-quote{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--or);text-align:center;line-height:1.7;max-width:420px;margin:32px auto 8px}
+.h-author{text-align:center;font-size:.62rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase;margin-bottom:24px}
 
-/* SECTION MENU APERCU VISUEL */
-.s-menu-preview{background:var(--brun);padding:72px 24px}
-.menu-visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:32px auto 0}
+/* ── SECTION MENU APERCU (brun foncé) ── */
+.s-menu-preview{background:var(--brun2);padding:72px 24px}
+.s-menu-preview .sec-title{color:var(--creme)}
+.s-menu-preview .sec-body{color:rgba(245,239,228,.7)}
+.s-menu-preview .eyebrow{color:var(--or)}
+.menu-visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:28px auto 0}
 .mv-card{position:relative;border-radius:3px;overflow:hidden;cursor:pointer;aspect-ratio:1}
 .mv-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .mv-card:hover img{transform:scale(1.06)}
 .mv-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,7,.85) 0%,rgba(13,10,7,.2) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
-.mv-card-title{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--creme);margin-bottom:3px}
-.mv-card-desc{font-size:.68rem;color:rgba(245,239,228,.65);line-height:1.4}
-.mv-card-price{position:absolute;top:10px;right:10px;background:var(--or);color:var(--noir);font-family:'Cinzel',serif;font-size:.62rem;padding:4px 8px;border-radius:2px}
+.mv-card-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:var(--creme);margin-bottom:3px}
+.mv-card-desc{font-size:.67rem;color:rgba(245,239,228,.65);line-height:1.4}
+.mv-card-price{position:absolute;top:10px;right:10px;background:var(--or);color:#fff;font-family:'Cinzel',serif;font-size:.6rem;padding:4px 8px;border-radius:2px}
 .mv-card.wide{grid-column:span 2;aspect-ratio:16/7}
 @media(min-width:640px){.menu-visual-grid{grid-template-columns:repeat(4,1fr);max-width:900px}.mv-card.wide{grid-column:span 2}}
+.menu-single-img{position:relative;max-width:900px;margin:28px auto 0;border-radius:4px;overflow:hidden;cursor:pointer;aspect-ratio:16/7}
+.menu-single-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.menu-single-img:hover img{transform:scale(1.03)}
+.menu-single-img::after{content:'';position:absolute;inset:0;background:rgba(13,10,7,.42)}
+.msi-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:24px;z-index:1}
+.msi-label{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;color:rgba(245,239,228,.8);text-transform:uppercase}
 
-/* GALERIE */
-.s-galerie{background:var(--noir);padding:72px 24px}
-.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:32px auto 0}
-.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;transition:transform .4s,filter .4s;filter:brightness(.85) saturate(.9)}
-.gal img:hover{transform:scale(1.02);filter:brightness(1) saturate(1.1)}
+/* ── GALERIE (gris très clair) ── */
+.s-galerie{background:#f7f3ee;padding:72px 24px}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:28px auto 0}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px;transition:transform .4s}
+.gal img:hover{transform:scale(1.02)}
 .gal .wide{grid-column:span 2;aspect-ratio:16/7}
-.ig-wrap{text-align:center;margin-top:22px}
-.ig-link{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;letter-spacing:.2em;color:var(--gris);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.ig-wrap{text-align:center;margin-top:20px}
+.ig-link{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;letter-spacing:.2em;color:var(--gris);text-decoration:none;text-transform:uppercase;transition:color .3s}
 .ig-link:hover{color:var(--or)}
 @media(min-width:640px){.gal{grid-template-columns:repeat(3,1fr);max-width:900px}.gal .wide{grid-column:span 1;aspect-ratio:1}}
 
-/* LOCALISATION */
-.s-loc{background:var(--brun);padding:72px 24px}
-.loc-card{max-width:440px;margin:32px auto 0;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.15);border-radius:2px;overflow:hidden}
-.loc-card iframe{width:100%;height:200px;border:none;filter:saturate(0) brightness(.55) contrast(1.1);display:block}
+/* ── LOCALISATION (blanc) ── */
+.s-loc{background:#fff;padding:72px 24px}
+.loc-card{max-width:440px;margin:28px auto 0;background:#f7f3ee;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.loc-card iframe{width:100%;height:200px;border:none;display:block}
 .loc-body{padding:22px 20px}
-.loc-row{display:flex;align-items:flex-start;gap:13px;margin-bottom:17px}
+.loc-row{display:flex;align-items:flex-start;gap:13px;margin-bottom:16px}
 .loc-row:last-child{margin-bottom:0}
 .loc-ico svg{stroke:var(--or);flex-shrink:0}
-.loc-lbl{font-size:.55rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:4px;font-family:'Cinzel',serif}
-.loc-val{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--creme);line-height:1.6;text-decoration:none}
-a.loc-val:hover{color:var(--orcl)}
+.loc-lbl{font-size:.53rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:3px;font-family:'Cinzel',serif}
+.loc-val{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--txt);line-height:1.6;text-decoration:none}
+a.loc-val:hover{color:var(--or)}
 
-/* CTA BAND */
-.cta-band{position:relative;text-align:center;padding:0;overflow:hidden;min-height:360px;display:flex;align-items:center;justify-content:center}
-.cta-band-bg{position:absolute;inset:0;z-index:0}
+/* ── CTA BAND (sombre) ── */
+.cta-band{position:relative;text-align:center;overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center}
+.cta-band-bg{position:absolute;inset:0}
 .cta-band-bg img{width:100%;height:100%;object-fit:cover}
-.cta-band-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(107,30,42,.88) 0%,rgba(13,10,7,.92) 100%)}
-.cta-band-content{position:relative;z-index:1;padding:56px 24px}
-.cta-band h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;color:var(--creme);margin-bottom:12px}
-.cta-band h2 em{font-style:italic;color:var(--orcl)}
-.cta-band p{font-size:.84rem;color:rgba(245,239,228,.65);margin-bottom:32px;line-height:1.8}
+.cta-band-bg::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.18)}
+.cta-band-content{position:relative;z-index:1;padding:44px 52px;background:rgba(13,10,7,.72);border-radius:4px;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cta-band h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;color:var(--creme);margin-bottom:10px}
+.cta-band h2 em{font-style:italic;color:#e8c97a}
+.cta-band p{font-size:.83rem;color:rgba(245,239,228,.65);margin-bottom:28px;line-height:1.8}
 .cta-btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
 
-/* FOOTER */
-footer{background:var(--noir);border-top:1px solid rgba(201,168,76,.1);padding:42px 24px 26px;text-align:center}
-.ft-logo{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--or);letter-spacing:.2em;margin-bottom:5px}
-.ft-tag{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--gris);margin-bottom:22px}
-.ft-soc{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
-.ft-soc a{width:38px;height:38px;border:1px solid rgba(201,168,76,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;color:var(--gris)}
-.ft-soc a:hover{border-color:var(--or);background:rgba(201,168,76,.1);color:var(--or)}
+/* ── FOOTER ── */
+footer{background:var(--noir);border-top:1px solid rgba(201,168,76,.1);padding:40px 24px 24px;text-align:center}
+.ft-logo{font-family:'Cinzel',serif;font-size:1rem;color:var(--or);letter-spacing:.2em;margin-bottom:5px}
+.ft-tag{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:rgba(245,239,228,.35);margin-bottom:20px}
+.ft-soc{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
+.ft-soc a{width:36px;height:36px;border:1px solid rgba(201,168,76,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .3s;color:rgba(245,239,228,.35)}
+.ft-soc a:hover{border-color:var(--or);color:var(--or)}
 .ft-soc a svg{stroke:currentColor}
-.ft-legal{font-size:.6rem;letter-spacing:.15em;color:rgba(138,127,114,.5)}
-.ft-legal a{color:inherit;text-decoration:none;cursor:pointer}.ft-legal a:hover{color:var(--gris)}
+.ft-legal{font-size:.6rem;letter-spacing:.12em;color:rgba(245,239,228,.2)}
+.ft-legal a{color:inherit;text-decoration:none;cursor:pointer}.ft-legal a:hover{color:var(--or)}
 
-/* PAGE HISTOIRE */
-.hist-hero{min-height:55vh;position:relative;display:flex;align-items:flex-end;padding:0 24px 56px;overflow:hidden}
-.hist-hero-bg{position:absolute;inset:0;z-index:0}
-.hist-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.hist-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.25) 0%,rgba(13,10,7,.65) 55%,rgba(13,10,7,1) 100%)}
-.hist-hero-txt{position:relative;z-index:1}
-.hist-hero-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,9vw,4.5rem);font-weight:300;color:var(--creme);line-height:1.1}
-.hist-hero-txt h1 em{font-style:italic;color:var(--orcl)}
-.hist-body{padding:64px 24px;max-width:640px;margin:0 auto}
+/* ── HERO PAGES INTERNES ── */
+.page-hero{position:relative;display:flex;align-items:flex-end;padding:0 24px 52px;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.25) 0%,rgba(13,10,7,.65) 55%,rgba(13,10,7,1) 100%)}
+.page-hero-txt{position:relative;z-index:1}
+.page-hero-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,9vw,4.5rem);font-weight:300;color:var(--creme);line-height:1.1}
+.page-hero-txt h1 em{font-style:italic;color:#e8c97a}
+.ph-tall{min-height:55vh}.ph-mid{min-height:40vh}.ph-short{min-height:34vh}
+
+/* ── PAGE HISTOIRE ── */
+.hist-body{background:#fff;padding:64px 24px;max-width:680px;margin:0 auto}
 .hist-grid{display:grid;grid-template-columns:1fr;gap:48px}
 @media(min-width:640px){.hist-grid{grid-template-columns:1fr 1fr}}
-.hist-bloc{display:flex;flex-direction:column;gap:14px}
-.hist-num{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:var(--or);text-transform:uppercase}
-.hist-bloc h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;color:var(--creme);line-height:1.2}
-.hist-bloc h3 em{font-style:italic;color:var(--orcl)}
-.hist-bloc p{font-size:.84rem;line-height:2;color:rgba(245,239,228,.65)}
-.hist-bloc img{width:100%;border-radius:2px;aspect-ratio:4/3;object-fit:cover;max-height:220px}
-.hist-mosaic{background:var(--brun);padding:56px 24px}
+.hist-bloc{display:flex;flex-direction:column;gap:12px}
+.hist-num{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.4em;color:var(--or);text-transform:uppercase}
+.hist-bloc h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--txt);line-height:1.2}
+.hist-bloc h3 em{font-style:italic;color:var(--or)}
+.hist-bloc p{font-size:.83rem;line-height:2;color:var(--txt2)}
+.hist-bloc img{width:100%;border-radius:2px;aspect-ratio:4/3;object-fit:cover;max-height:200px}
+.hist-mosaic{background:#f7f3ee;padding:52px 24px}
 .mosaic{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:0 auto}
 .mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px}
+.hist-quote-wrap{background:#fff;padding:44px 24px;text-align:center}
+.hist-quote-wrap blockquote{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--or);max-width:480px;margin:0 auto 8px;line-height:1.7}
+.hist-quote-wrap p{font-size:.62rem;letter-spacing:.28em;color:var(--gris);text-transform:uppercase}
 
-/* PAGE MENU */
-.menu-hero{min-height:42vh;position:relative;display:flex;align-items:flex-end;padding:0 24px 52px;overflow:hidden}
-.menu-hero-bg{position:absolute;inset:0;z-index:0}
-.menu-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
-.menu-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.3) 0%,rgba(13,10,7,.75) 60%,rgba(13,10,7,1) 100%)}
-.menu-hero-txt{position:relative;z-index:1;width:100%;text-align:center}
-.menu-tabs-nav{display:flex;justify-content:center;max-width:420px;margin:32px auto 0;border:1px solid rgba(201,168,76,.2);border-radius:2px;overflow:hidden}
-.tab-btn{flex:1;padding:11px 6px;text-align:center;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);border-right:1px solid rgba(201,168,76,.2);transition:all .3s;cursor:pointer;background:none;border-top:none;border-bottom:none}
-.tab-btn:last-child{border-right:none}
-.tab-btn:hover{background:rgba(201,168,76,.08);color:var(--or)}
-.tab-btn.active{background:var(--or);color:var(--noir)}
-.tab-content{display:none;padding:44px 20px 64px;max-width:680px;margin:0 auto}
+/* ── PAGE MENU — fond blanc, texte noir ── */
+.menu-tabs-wrap{background:#fff;border-bottom:2px solid var(--border);position:sticky;top:67px;z-index:50;padding:0 24px}
+.menu-tabs-nav{display:flex;max-width:860px;margin:0 auto}
+.tab-btn{flex:1;padding:16px 8px;text-align:center;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);border:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;cursor:pointer;background:none}
+.tab-btn:hover{color:var(--or)}
+.tab-btn.active{color:var(--or);border-bottom-color:var(--or)}
+.tab-content{display:none;background:#fff}
 .tab-content.active{display:block}
-.m-cat{margin-bottom:40px}
-.m-cat-title{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.15)}
-.m-cat-sub{font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--gris);margin:-10px 0 14px}
-.m-item{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,.07)}
+.menu-section{padding:48px 24px 68px;max-width:860px;margin:0 auto}
+.m-cat{margin-bottom:44px}
+.m-cat-title{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.28em;color:var(--or);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.m-cat-sub{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--gris);margin-bottom:14px}
+.m-item{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:10px 0;border-bottom:1px solid #f0ebe4}
 .m-item:last-child{border-bottom:none}
-.m-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--creme)}
-.m-desc{font-size:.7rem;color:var(--gris);margin-top:2px;line-height:1.4}
-.m-price{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--orcl);white-space:nowrap;flex-shrink:0}
-.m-visual-section{margin-bottom:40px}
-.m-visual-title{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.15)}
-.m-visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.m-v-card{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:3/4}
-.m-v-card.landscape{aspect-ratio:16/9;grid-column:span 2}
-.m-v-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.m-v-card:hover img{transform:scale(1.05)}
-.m-v-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,7,.9) 0%,rgba(13,10,7,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:13px}
-.m-v-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--creme);margin-bottom:2px}
-.m-v-desc{font-size:.68rem;color:rgba(245,239,228,.6);line-height:1.4;margin-bottom:5px}
-.m-v-price{font-family:'Cinzel',serif;font-size:.68rem;color:var(--or)}
-.formule-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.15);border-radius:3px;padding:28px;margin-bottom:20px}
-.formule-card h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--orcl);margin-bottom:6px}
-.formule-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--or);margin-bottom:14px}
-.formule-card ul{list-style:none;font-size:.82rem;line-height:2;color:rgba(245,239,228,.65)}
-.formule-card ul li::before{content:"\2014  ";color:var(--or)}
-.bois-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px}
-.bois-card{background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.1);border-radius:3px;overflow:hidden}
-.bois-card img{width:100%;aspect-ratio:3/2;object-fit:cover;max-height:130px}
-.bois-card-body{padding:14px}
-.bois-card-body h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;color:var(--orcl);margin-bottom:6px}
-.bois-card-body p{font-size:.76rem;line-height:1.65;color:rgba(245,239,228,.6)}
+.m-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--txt)}
+.m-desc{font-size:.72rem;color:var(--gris);margin-top:2px;line-height:1.45}
+.m-price{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--or);white-space:nowrap;flex-shrink:0}
+.m-badge{display:inline-block;font-size:.5rem;letter-spacing:.12em;color:#4a7c59;border:1px solid #4a7c59;padding:2px 6px;border-radius:2px;margin-left:8px;font-family:'Cinzel',serif;vertical-align:middle}
 
-/* PAGE CONTACT */
-.contact-hero{min-height:40vh;position:relative;display:flex;align-items:flex-end;padding:0 24px 52px;overflow:hidden}
-.ch-bg{position:absolute;inset:0;z-index:0}
-.ch-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.ch-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.3) 0%,rgba(13,10,7,.7) 60%,rgba(13,10,7,1) 100%)}
-.ch-txt{position:relative;z-index:1;width:100%;text-align:center}
-.ch-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:300;color:var(--creme)}
-.ch-txt h1 em{font-style:italic;color:var(--orcl)}
-.contact-body{max-width:560px;margin:0 auto;padding:52px 20px 64px}
-.c-infos-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--creme);margin-bottom:24px}
-.c-infos-title em{font-style:italic;color:var(--orcl)}
-.c-row{display:flex;align-items:flex-start;gap:13px;margin-bottom:16px;padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(201,168,76,.1);border-radius:2px}
+/* Vins : colonnes */
+.vin-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+@media(max-width:600px){.vin-cols{grid-template-columns:1fr}}
+.vin-item{padding:11px 0;border-bottom:1px solid #f0ebe4}
+.vin-item:last-child{border-bottom:none}
+.vin-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--txt);margin-bottom:2px}
+.vin-domaine{font-size:.72rem;color:var(--gris);font-style:italic;margin-bottom:6px}
+.vin-prix{display:flex;gap:14px;flex-wrap:wrap}
+.vin-prix span{font-size:.74rem;color:var(--txt2)}
+.vin-prix strong{color:var(--or);font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:400}
+
+/* Cocktails colonnes */
+.cocktail-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+@media(max-width:600px){.cocktail-cols{grid-template-columns:1fr}}
+.sub-cat-title{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:var(--gris);text-transform:uppercase;padding:10px 0 8px;border-bottom:1px solid var(--border);margin-bottom:2px}
+
+/* Formules */
+.formule-card{background:#f7f3ee;border:1px solid var(--border);border-radius:3px;padding:28px;margin-bottom:18px}
+.formule-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--txt);margin-bottom:4px}
+.formule-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--or);margin-bottom:14px}
+.formule-sub{font-size:.8rem;color:var(--gris);margin-bottom:16px;font-style:italic}
+.formule-card ul{list-style:none;font-size:.83rem;line-height:2.1;color:var(--txt2)}
+.formule-card ul li::before{content:"4  ";color:var(--or)}
+.formule-note{font-size:.77rem;color:var(--gris);margin-top:12px;font-style:italic}
+
+/* ── PAGE CONTACT ── */
+.contact-body{background:#fff;padding:52px 24px 64px;max-width:600px;margin:0 auto}
+.c-section-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--txt);margin-bottom:22px}
+.c-section-title em{font-style:italic;color:var(--or)}
+.c-row{display:flex;align-items:flex-start;gap:13px;margin-bottom:12px;padding:16px;background:#f7f3ee;border:1px solid var(--border);border-radius:2px}
 .c-row svg{stroke:var(--or);flex-shrink:0;margin-top:2px}
-.c-lbl{font-size:.55rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:3px;font-family:'Cinzel',serif}
-.c-val{font-family:'Cormorant Garamond',serif;font-size:.97rem;color:var(--creme);line-height:1.6;text-decoration:none}
-a.c-val:hover{color:var(--orcl)}
-.c-map{border-radius:2px;overflow:hidden;border:1px solid rgba(201,168,76,.15);margin-bottom:40px}
-.c-map iframe{width:100%;height:230px;border:none;filter:saturate(0) brightness(.55) contrast(1.1);display:block}
-.c-form-title{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--creme);margin-bottom:20px}
-.c-form-title em{font-style:italic;color:var(--orcl)}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:.57rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:6px;font-family:'Cinzel',serif}
-.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);border-radius:2px;padding:11px 13px;color:var(--creme);font-family:'Raleway',sans-serif;font-size:.84rem;font-weight:300;outline:none;transition:border-color .3s;-webkit-appearance:none}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(201,168,76,.5)}
+.c-lbl{font-size:.52rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:3px;font-family:'Cinzel',serif}
+.c-val{font-family:'Cormorant Garamond',serif;font-size:.97rem;color:var(--txt);line-height:1.6;text-decoration:none}
+a.c-val:hover{color:var(--or)}
+.c-map{border-radius:2px;overflow:hidden;border:1px solid var(--border);margin-bottom:36px}
+.c-map iframe{width:100%;height:230px;border:none;display:block}
+.c-form-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;color:var(--txt);margin-bottom:18px}
+.c-form-title em{font-style:italic;color:var(--or)}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:.54rem;letter-spacing:.22em;color:var(--or);text-transform:uppercase;margin-bottom:5px;font-family:'Cinzel',serif}
+.fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1px solid var(--border);border-radius:2px;padding:11px 13px;color:var(--txt);font-family:'Raleway',sans-serif;font-size:.84rem;font-weight:300;outline:none;transition:border-color .3s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--or)}
 .fg textarea{height:100px;resize:vertical}
-.fg select option{background:var(--brun);color:var(--creme)}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.f-submit{width:100%;background:var(--or);color:var(--noir);padding:14px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:all .3s;margin-top:6px}
+.f-submit{width:100%;background:var(--or);color:#fff;padding:14px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;transition:background .2s;margin-top:4px}
 .f-submit:hover{background:var(--orcl)}
-.f-note{font-size:.7rem;color:var(--gris);text-align:center;margin-top:12px;line-height:1.6}
+.f-note{font-size:.7rem;color:var(--gris);text-align:center;margin-top:10px;line-height:1.6}
 
-/* MENTIONS */
-.ml-hero{background:var(--brun);padding:110px 24px 48px;border-bottom:1px solid rgba(201,168,76,.1)}
-.ml-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;color:var(--creme)}
-.ml-hero h1 em{font-style:italic;color:var(--orcl)}
-.ml-body{padding:52px 24px 72px;max-width:620px;margin:0 auto}
-.ml-sec{margin-bottom:34px}
-.ml-sec h2{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:12px;padding-bottom:7px;border-bottom:1px solid rgba(201,168,76,.12)}
-.ml-sec p{font-size:.83rem;line-height:1.9;color:rgba(245,239,228,.65);margin-bottom:8px}
-.ml-sec a{color:var(--orcl);text-decoration:none}
+/* ── MENTIONS ── */
+.ml-hero-wrap{background:var(--brun);padding:110px 24px 44px}
+.ml-hero-wrap h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3rem);font-weight:300;color:var(--creme)}
+.ml-hero-wrap h1 em{font-style:italic;color:#e8c97a}
+.ml-body{background:#fff;padding:48px 24px 72px;max-width:640px;margin:0 auto}
+.ml-sec{margin-bottom:32px}
+.ml-sec h2{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.25em;color:var(--or);text-transform:uppercase;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.ml-sec p{font-size:.83rem;line-height:1.9;color:var(--txt2);margin-bottom:7px}
 </style>
 </head>
 <body>
@@ -286,7 +286,7 @@ a.c-val:hover{color:var(--orcl)}
     <a data-page="contact">Contact</a>
   </div>
   <a href="tel:0297682423" class="nav-tel">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg>
     02 97 68 24 23
   </a>
   <button class="hamburger" id="hbg"><span></span><span></span><span></span></button>
@@ -304,7 +304,7 @@ a.c-val:hover{color:var(--orcl)}
 <div class="bottom-bar">
   <div class="bb-inner">
     <a href="tel:0297682423" class="bb-btn">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg>
       Appeler
     </a>
     <div class="bb-sep"></div>
@@ -315,13 +315,11 @@ a.c-val:hover{color:var(--orcl)}
   </div>
 </div>
 
-<!-- ===== PAGE ACCUEIL ===== -->
+<!-- ═══════════ PAGE ACCUEIL ═══════════ -->
 <div class="page active" id="page-accueil">
 
 <section class="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85" alt="Brasserie Le Cardinal"/>
-  </div>
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=85" alt=""/></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Bar &middot; Brasserie &middot; Vannes</p>
     <h1>Le <em>Cardinal</em></h1>
@@ -329,7 +327,7 @@ a.c-val:hover{color:var(--orcl)}
     <p class="hero-desc">Dans le c&oelig;ur historique de Vannes, une brasserie au charme intemporel vous accueille pour d&eacute;jeuner, d&icirc;ner, ou simplement prendre un verre.</p>
     <div class="hero-ctas">
       <button class="btn-p" data-goto="menu">Voir le menu</button>
-      <button class="btn-o" data-goto="contact">Nous trouver</button>
+      <button class="btn-o-w" data-goto="contact">Nous trouver</button>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div><span>D&eacute;couvrir</span></div>
@@ -339,8 +337,8 @@ a.c-val:hover{color:var(--orcl)}
   <div class="qi-grid">
     <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="qi-lbl">Lun &ndash; Sam</div><div class="qi-val">9h &rarr; 23h</div></div>
     <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div><div class="qi-lbl">Dimanche</div><div class="qi-val">9h30 &rarr; 19h</div></div>
-    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="qi-lbl">Adresse</div><div class="qi-val">7 place<br/>Saint-Pierre</div></div>
-    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div class="qi-lbl">R&eacute;server</div><div class="qi-val">02 97<br/>68 24 23</div></div>
+    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="qi-lbl">Adresse</div><div class="qi-val" style="white-space:nowrap">7 pl. Saint-Pierre</div></div>
+    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="qi-lbl">R&eacute;server</div><div class="qi-val" style="white-space:nowrap">02 97 68 24 23</div></div>
   </div>
 </div>
 
@@ -349,12 +347,12 @@ a.c-val:hover{color:var(--orcl)}
   <h2 class="sec-title reveal">Un <em>&eacute;crin</em> au c&oelig;ur<br/>de Vannes</h2>
   <p class="sec-body reveal">Nich&eacute;e dans une maison du 16e si&egrave;cle enti&egrave;rement restaur&eacute;e, face &agrave; la cath&eacute;drale Saint-Pierre. Cuisine locale de qualit&eacute;, ambiance cosy et raffin&eacute;e, soir&eacute;es piano jazz le jeudi.</p>
   <div class="h-photos reveal">
-    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Int&eacute;rieur"/>
-    <img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?auto=format&fit=crop&w=800&q=80" alt="Ambiance"/>
-    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt="Bar"/>
-    <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=800&q=80" alt="Table"/>
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt=""/>
+    <img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?auto=format&fit=crop&w=800&q=80" alt=""/>
+    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt=""/>
+    <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=800&q=80" alt=""/>
   </div>
-  <blockquote class="h-quote reveal">&laquo; Le temps est la plus petite chose dont nous disposons. &raquo;</blockquote>
+  <blockquote class="h-quote reveal">&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote>
   <p class="h-author reveal">&mdash; Ernest Hemingway</p>
   <div style="text-align:center" class="reveal"><button class="btn-o" data-goto="histoire">D&eacute;couvrir notre histoire</button></div>
 </section>
@@ -363,29 +361,10 @@ a.c-val:hover{color:var(--orcl)}
   <p class="eyebrow reveal">Cuisine &amp; Boissons</p>
   <h2 class="sec-title reveal">Une carte <em>g&eacute;n&eacute;reuse</em></h2>
   <p class="sec-body reveal">Produits frais, cuisine du march&eacute;, hu&icirc;tres de Baden, burgers maison, cave &agrave; vins &mdash; pour tous les moments de la journ&eacute;e.</p>
-  <div class="menu-visual-grid">
-    <div class="mv-card wide reveal" data-goto="menu">
-      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="La Carte"/>
-      <div class="mv-card-overlay"><div class="mv-card-title">La Carte</div><div class="mv-card-desc">Entr&eacute;es &middot; Viandes &middot; Poissons &middot; Desserts</div></div>
-    </div>
-    <div class="mv-card reveal" data-goto="menu">
-      <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80" alt="Hu&icirc;tres"/>
-      <div class="mv-card-overlay"><div class="mv-card-title">Hu&icirc;tres &amp; Mer</div><div class="mv-card-desc">Baden N&deg;3</div></div>
-      <div class="mv-card-price">d&egrave;s 10 &euro;</div>
-    </div>
-    <div class="mv-card reveal" data-goto="menu" data-tab="boissons">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" alt="Vins"/>
-      <div class="mv-card-overlay"><div class="mv-card-title">Cave &agrave; Vins</div><div class="mv-card-desc">Vins &amp; cocktails</div></div>
-    </div>
-    <div class="mv-card reveal" data-goto="menu" data-tab="menus">
-      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Burgers"/>
-      <div class="mv-card-overlay"><div class="mv-card-title">Burgers &amp; Tapas</div><div class="mv-card-desc">Faits maison</div></div>
-      <div class="mv-card-price">d&egrave;s 17 &euro;</div>
-    </div>
-    <div class="mv-card reveal" data-goto="menu">
-      <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=600&q=80" alt="Desserts"/>
-      <div class="mv-card-overlay"><div class="mv-card-title">Desserts</div><div class="mv-card-desc">Gourmandises maison</div></div>
-      <div class="mv-card-price">d&egrave;s 7,50 &euro;</div>
+  <div class="menu-single-img reveal" data-goto="menu">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80" alt="La carte du Cardinal"/>
+    <div class="msi-overlay">
+      <div class="msi-label">Entr&eacute;es &middot; Viandes &middot; Poissons &middot; Desserts &middot; Glaces</div>
     </div>
   </div>
   <div style="text-align:center;margin-top:28px" class="reveal"><button class="btn-p" data-goto="menu">Voir la carte compl&egrave;te</button></div>
@@ -395,30 +374,25 @@ a.c-val:hover{color:var(--orcl)}
   <p class="eyebrow reveal">Ambiance</p>
   <h2 class="sec-title reveal">Le <em>Cardinal</em> en images</h2>
   <div class="gal">
-    <img class="wide reveal" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="Terrasse"/>
-    <img class="reveal" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt="Salle"/>
-    <img class="reveal" src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?auto=format&fit=crop&w=600&q=80" alt="Cocktails"/>
-    <img class="reveal" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Plat"/>
-    <img class="reveal" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt="Bar"/>
-    <img class="reveal" src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=600&q=80" alt="Soir"/>
+    <img class="wide reveal" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt=""/>
+    <img class="reveal" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80" alt=""/>
+    <img class="reveal" src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?auto=format&fit=crop&w=600&q=80" alt=""/>
+    <img class="reveal" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt=""/>
+    <img class="reveal" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80" alt=""/>
+    <img class="reveal" src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=600&q=80" alt=""/>
   </div>
-  <div class="ig-wrap reveal">
-    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank" class="ig-link">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      Suivre @lecardinal_vannes
-    </a>
-  </div>
+  <div class="ig-wrap reveal"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank" class="ig-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>&nbsp;Suivre @lecardinal_vannes</a></div>
 </section>
 
 <section class="s-loc">
   <p class="eyebrow reveal">Venir nous voir</p>
   <h2 class="sec-title reveal">Nous <em>trouver</em></h2>
   <div class="loc-card reveal">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" title="Carte"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy"></iframe>
     <div class="loc-body">
-      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="loc-lbl">Adresse</div><a href="https://maps.google.com/?q=Brasserie+Le+Cardinal+Vannes" target="_blank" class="loc-val">7 place Saint-Pierre<br/>56000 Vannes</a></div></div>
-      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="loc-lbl">Horaires</div><div class="loc-val">Lun&ndash;Sam : 9h &rarr; 23h<br/>Dimanche : 9h30 &rarr; 19h</div></div></div>
-      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="loc-lbl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="loc-val">02 97 68 24 23</a></div></div>
+      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="loc-lbl">Adresse</div><a href="https://maps.google.com/?q=Brasserie+Le+Cardinal+Vannes" target="_blank" class="loc-val">7 place Saint-Pierre, 56000 Vannes</a></div></div>
+      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="loc-lbl">Horaires</div><div class="loc-val">Lun&ndash;Sam : 9h&rarr;23h &nbsp;&middot;&nbsp; Dim : 9h30&rarr;19h</div></div></div>
+      <div class="loc-row"><div class="loc-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="loc-lbl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="loc-val">02 97 68 24 23</a></div></div>
     </div>
   </div>
 </section>
@@ -429,29 +403,28 @@ a.c-val:hover{color:var(--orcl)}
     <h2>R&eacute;servez <em>votre table</em></h2>
     <p>Une envie spontan&eacute;e ou une soir&eacute;e planifi&eacute;e &mdash;<br/>nous vous attendons place Saint-Pierre.</p>
     <div class="cta-btns">
-      <a href="tel:0297682423" class="btn-lg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg>Appeler maintenant</a>
-      <button class="btn-lg-o" data-goto="contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Nous contacter</button>
+      <a href="tel:0297682423" class="btn-lg">Appeler maintenant</a>
+      <button class="btn-lg-o" data-goto="contact">Nous contacter</button>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="ft-logo">LE CARDINAL</div>
-  <div class="ft-tag">Bar &middot; Brasserie &middot; Vannes</div>
+  <div class="ft-logo">LE CARDINAL</div><div class="ft-tag">Bar &middot; Brasserie &middot; Vannes</div>
   <div class="ft-soc">
-    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
   </div>
   <div class="ft-legal"><a data-page="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div>
 </footer>
 </div>
 
-<!-- ===== PAGE HISTOIRE ===== -->
+<!-- ═══════════ PAGE HISTOIRE ═══════════ -->
 <div class="page" id="page-histoire">
-<div class="hist-hero">
-  <div class="hist-hero-bg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
-  <div class="hist-hero-txt">
-    <p class="eyebrow" style="text-align:left;margin-bottom:10px">Notre Histoire</p>
+<div class="page-hero ph-tall">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
+  <div class="page-hero-txt">
+    <p class="eyebrow" style="text-align:left;color:#e8c97a;margin-bottom:10px">Notre Histoire</p>
     <h1>Le d&eacute;but d'une belle <em>histoire</em></h1>
   </div>
 </div>
@@ -460,13 +433,13 @@ a.c-val:hover{color:var(--orcl)}
     <div class="hist-bloc reveal">
       <div class="hist-num">01 &mdash; Les origines</div>
       <h3>Une maison du <em>16e si&egrave;cle</em></h3>
-      <p>Nich&eacute;e dans le c&oelig;ur historique de Vannes, la brasserie Le Cardinal a ouvert en juin 2021 dans une maison enti&egrave;rement restaur&eacute;e du 16e si&egrave;cle. Apr&egrave;s une r&eacute;novation totale du b&acirc;timent et de longs travaux de d&eacute;coration, le restaurant a ouvert ses portes.</p>
+      <p>Nich&eacute;e dans le c&oelig;ur historique de Vannes, la brasserie Le Cardinal a ouvert en juin 2021 dans une maison enti&egrave;rement restaur&eacute;e du 16e si&egrave;cle. Apr&egrave;s une r&eacute;novation totale du b&acirc;timent, le restaurant a ouvert ses portes face &agrave; la cath&eacute;drale Saint-Pierre.</p>
       <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" alt=""/>
     </div>
     <div class="hist-bloc reveal">
       <div class="hist-num">02 &mdash; L'ambiance</div>
       <h3>Cosy, <em>raffin&eacute;</em>, intemporel</h3>
-      <p>Terrasse ensoleill&eacute;e face &agrave; la cath&eacute;drale Saint-Pierre. &Agrave; l'int&eacute;rieur, une d&eacute;coration soign&eacute;e aux accents feutr&eacute;s et raffin&eacute;s. Objets chin&eacute;s, tons profonds, ambiance jazzy le jeudi soir.</p>
+      <p>Terrasse ensoleill&eacute;e face &agrave; la cath&eacute;drale Saint-Pierre. &Agrave; l'int&eacute;rieur, d&eacute;coration soign&eacute;e aux accents feutr&eacute;s et raffin&eacute;s. Objets chin&eacute;s, tons profonds, ambiance jazzy le jeudi soir.</p>
       <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=800&q=80" alt=""/>
     </div>
     <div class="hist-bloc reveal">
@@ -484,7 +457,6 @@ a.c-val:hover{color:var(--orcl)}
   </div>
 </div>
 <div class="hist-mosaic">
-  <p class="eyebrow" style="text-align:center;margin-bottom:24px">Galerie</p>
   <div class="mosaic">
     <img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?auto=format&fit=crop&w=600&q=80" alt=""/>
     <img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?auto=format&fit=crop&w=600&q=80" alt=""/>
@@ -492,29 +464,31 @@ a.c-val:hover{color:var(--orcl)}
     <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80" alt=""/>
   </div>
 </div>
-<blockquote class="h-quote reveal">&laquo; Le temps est la plus petite chose dont nous disposons. &raquo;</blockquote>
-<p class="h-author reveal">&mdash; Ernest Hemingway</p>
-<div style="text-align:center;padding-bottom:64px" class="reveal"><button class="btn-p" data-goto="contact">R&eacute;server une table</button></div>
+<div class="hist-quote-wrap reveal">
+  <blockquote>&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote>
+  <p>&mdash; Ernest Hemingway</p>
+</div>
+<div style="background:#fff;text-align:center;padding:0 24px 64px" class="reveal">
+  <button class="btn-p" data-goto="contact">R&eacute;server une table</button>
+</div>
 <footer>
   <div class="ft-logo">LE CARDINAL</div><div class="ft-tag">Bar &middot; Brasserie &middot; Vannes</div>
-  <div class="ft-soc">
-    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-  </div>
+  <div class="ft-soc"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div>
   <div class="ft-legal"><a data-page="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div>
 </footer>
 </div>
 
-<!-- ===== PAGE MENU ===== -->
+<!-- ═══════════ PAGE MENU ═══════════ -->
 <div class="page" id="page-menu">
-<div class="menu-hero">
-  <div class="menu-hero-bg"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
-  <div class="menu-hero-txt">
-    <p class="eyebrow">La Cuisine</p>
-    <h2 class="sec-title" style="margin-bottom:0">Notre <em>carte</em></h2>
+<div class="page-hero ph-mid">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
+  <div class="page-hero-txt" style="width:100%;text-align:center">
+    <p class="eyebrow" style="color:#e8c97a">La Cuisine</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,9vw,4.5rem);font-weight:300;color:var(--creme)">Notre <em>carte</em></h1>
   </div>
 </div>
-<div style="max-width:680px;margin:0 auto;padding:0 20px">
+
+<div class="menu-tabs-wrap">
   <div class="menu-tabs-nav">
     <button class="tab-btn active" data-tab="carte">La Carte</button>
     <button class="tab-btn" data-tab="menus">Menus</button>
@@ -522,137 +496,319 @@ a.c-val:hover{color:var(--orcl)}
   </div>
 </div>
 
+<!-- TAB CARTE -->
 <div class="tab-content active" id="tab-carte">
-  <div class="m-visual-section">
-    <div class="m-visual-title">Hu&icirc;tres &amp; Mer</div>
-    <div class="m-visual-grid">
-      <div class="m-v-card landscape">
-        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Hu&icirc;tres Baden N&deg;3</div><div class="m-v-desc">&laquo; Au rythme des mar&eacute;es &raquo; &mdash; 6, 9 ou 12 pi&egrave;ces</div><div class="m-v-price">10&euro; &middot; 15&euro; &middot; 20&euro;</div></div>
-      </div>
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Couteaux farcis</div><div class="m-v-desc">10 pi&egrave;ces</div><div class="m-v-price">14,50&euro;</div></div>
-      </div>
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Pav&eacute; de saumon</div><div class="m-v-desc">Cr&egrave;me de curry breton</div><div class="m-v-price">22&euro;</div></div>
-      </div>
-    </div>
+<div class="menu-section">
+
+  <div class="m-cat">
+    <div class="m-cat-title">Pour Commencer</div>
+    <div class="m-cat-sub">A partager ou pas !</div>
+    <div class="m-item"><div><div class="m-name">Foie gras de canard</div><div class="m-desc">Chutney d'&eacute;chalotes au cidre</div></div><div class="m-price">15&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Quesadillas</div><div class="m-desc">Poulet, fromage frais, oignons rouges confits, cheddar</div></div><div class="m-price">10&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Camembert r&ocirc;ti AOP</div><div class="m-desc">Miel, noix</div></div><div class="m-price">11&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">12 palourdes farcies</div></div><div class="m-price">14,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">10 couteaux farcis</div></div><div class="m-price">14,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Mix farcis de la mer</div><div class="m-desc">6 couteaux, 6 palourdes</div></div><div class="m-price">14,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Assiette de frites</div></div><div class="m-price">5,50&euro;</div></div>
   </div>
-  <div class="m-visual-section">
-    <div class="m-visual-title">Viandes &amp; Burgers</div>
-    <div class="m-visual-grid">
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Entrec&ocirc;te 300g</div><div class="m-v-desc">Normande, sauce poivre de Sarawak</div><div class="m-v-price">26&euro;</div></div>
-      </div>
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Burger l'Original</div><div class="m-v-desc">Steak 150g, cheddar, sauce tartare</div><div class="m-v-price">18&euro;</div></div>
-      </div>
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Tartare de b&oelig;uf</div><div class="m-v-desc">Frites maison, salade verte</div><div class="m-v-price">21&euro;</div></div>
-      </div>
-      <div class="m-v-card">
-        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt=""/>
-        <div class="m-v-overlay"><div class="m-v-name">Tapas du moment</div><div class="m-v-desc">S&eacute;lection du chef, &agrave; partager</div><div class="m-v-price">14&euro;</div></div>
-      </div>
-    </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Les Hu&icirc;tres N&deg;3 &mdash; Baden &laquo;&nbsp;Au rythme des mar&eacute;es&nbsp;&raquo;</div>
+    <div class="m-item"><div><div class="m-name">6 hu&icirc;tres</div></div><div class="m-price">10&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">9 hu&icirc;tres</div></div><div class="m-price">15&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">12 hu&icirc;tres</div></div><div class="m-price">20&euro;</div></div>
   </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">&Agrave; la D&eacute;coupe</div>
+    <div class="m-item"><div><div class="m-name">Assiette charcuterie &amp; fromage</div><div class="m-desc">Jambon Teruel, chorizo ib&eacute;rique, jambon fum&eacute; aux herbes &mdash; Comt&eacute;, tomme de Normandie, Sainte-Maure de Touraine</div></div><div class="m-price">22&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Assiette de charcuterie</div><div class="m-desc">Jambon de Teruel, chorizo ib&eacute;rique et jambon fum&eacute; aux herbes</div></div><div class="m-price">17&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Assiette de fromage</div><div class="m-desc">Comt&eacute;, tomme de Normandie et Sainte-Maure de Touraine</div></div><div class="m-price">17&euro;</div></div>
+  </div>
+
   <div class="m-cat">
     <div class="m-cat-title">Entr&eacute;es</div>
-    <div class="m-item"><div><div class="m-name">Assiette de charcuterie maison</div><div class="m-desc">Jambon, rillettes, cornichons</div></div><div class="m-price">12&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Salade Cardinal</div><div class="m-desc">Roquette, ch&egrave;vre chaud, noix, miel</div></div><div class="m-price">11&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Soupe du jour</div><div class="m-desc">Selon le march&eacute;</div></div><div class="m-price">8&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Planche mixte</div><div class="m-desc">Fromages &amp; charcuteries s&eacute;lectionn&eacute;s</div></div><div class="m-price">16&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Oeuf mimosa de Mamie</div></div><div class="m-price">8&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Camembert r&ocirc;ti AOP</div><div class="m-desc">Miel, noix &amp; pain grillé</div></div><div class="m-price">11&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Foie gras de canard</div><div class="m-desc">IGP du Sud-Ouest, chutney pomme et cidre, toast de pain au sarrasin</div></div><div class="m-price">15&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Feuilleté d'échalotes caramélisées au miel</div></div><div class="m-price">11&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Velout&eacute; de c&eacute;leri rave</div></div><div class="m-price">8&euro;</div></div>
   </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Salades</div>
+    <div class="m-item"><div><div class="m-name">Salade Caesar</div><div class="m-desc">Salade, poulet, sauce Caesar, oeuf, lard crispy, cro&ucirc;tons, parmesan</div></div><div class="m-price">18&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Salade de cromesquis de ch&egrave;vre</div><div class="m-desc">3 cromesquis, vinaigre balsamique, jambon de Turuel, pickles de l&eacute;gumes</div></div><div class="m-price">18&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Portion de frites</div></div><div class="m-price">5,50&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Poissons</div>
+    <div class="m-item"><div><div class="m-name">Pav&eacute; de saumon</div><div class="m-desc">Cr&egrave;me de curry breton et petits l&eacute;gumes</div></div><div class="m-price">22&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Poisson du moment</div><div class="m-desc">Voir ardoise</div></div><div class="m-price">&mdash;</div></div>
+    <div class="m-item"><div><div class="m-name">Noix de Saint-Jacques</div><div class="m-desc">Fa&ccedil;on cotriade bretonne</div></div><div class="m-price">25&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Viandes</div>
+    <div class="m-item"><div><div class="m-name">Fondant d'agneau</div><div class="m-desc">Cuit 12h dans son jus, &eacute;cras&eacute; de pomme de terre</div></div><div class="m-price">23&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Entrec&ocirc;te Normande 300g</div><div class="m-desc">14 jours minimum &mdash; frites, salade et sauce au poivre de Sarawak</div></div><div class="m-price">26&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Tartare de boeuf charolais &laquo;&nbsp;italien&nbsp;&raquo;</div><div class="m-desc">Au couteau, pesto, pignons de pin, parmesan, frites, salade</div></div><div class="m-price">22&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Tartare de boeuf charolais</div><div class="m-desc">Au couteau, frites, salade</div></div><div class="m-price">20&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Cuisse de canard confite</div><div class="m-desc">Domaine de Lanvaux (56) &mdash; &eacute;cras&eacute; de pomme de terre, sauce au cidre</div></div><div class="m-price">23&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Saucisse bretonne</div><div class="m-desc">Pur&eacute;e de pommes de terre, jus r&eacute;duit</div></div><div class="m-price">16&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Burgers</div>
+    <div class="m-cat-sub">Servi avec frites et salade</div>
+    <div class="m-item"><div><div class="m-name">L'Original</div><div class="m-desc">Steak hach&eacute; race &agrave; viande 150g, cheddar affin&eacute;, salade, tomates, oignons rouges, sauce tartare</div></div><div class="m-price">18&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Le Veggie</div><div class="m-desc">Potimarron, comt&eacute;, mayonnaise &eacute;pic&eacute;e, pickles de l&eacute;gumes</div></div><div class="m-price">17,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Burger poulet croustillant</div><div class="m-desc">Sauce barbecue, comt&eacute;, salade, tomate, oignons rouges</div></div><div class="m-price">19&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Portion de frites</div></div><div class="m-price">5,50&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Plats</div>
+    <div class="m-item"><div><div class="m-name">Ecras&eacute; de patate douce&nbsp;<span class="m-badge">V&eacute;g&eacute;talien</span></div><div class="m-desc">Pesto d'herbes fra&icirc;ches, muesli sal&eacute; croquant</div></div><div class="m-price">15&euro;</div></div>
+  </div>
+
   <div class="m-cat">
     <div class="m-cat-title">Desserts</div>
-    <div class="m-item"><div><div class="m-name">Fondant au chocolat</div><div class="m-desc">Glace vanille maison</div></div><div class="m-price">8&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Tarte fine aux pommes</div><div class="m-desc">Cr&egrave;me caramel au beurre sal&eacute;</div></div><div class="m-price">8&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Assiette de fromages</div><div class="m-desc">S&eacute;lection affin&eacute;e, confiture</div></div><div class="m-price">9&euro;</div></div>
-    <div class="m-item"><div><div class="m-name">Panna cotta</div><div class="m-desc">Coulis de fruits rouges</div></div><div class="m-price">7&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Assortiment de fromages</div></div><div class="m-price">9,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Sarrasin au lait, caramel au beurre sal&eacute;</div></div><div class="m-price">8,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Profiteroles (3)</div><div class="m-desc">Glace vanille et coulis de chocolat chaud</div></div><div class="m-price">10,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">C&oelig;ur coulant &amp; glace vanille</div></div><div class="m-price">9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Mousse au chocolat</div><div class="m-desc">Cacahu&egrave;tes croustillantes et caramel</div></div><div class="m-price">7,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Caf&eacute; gourmand</div></div><div class="m-price">8,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Th&eacute; gourmand</div></div><div class="m-price">9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Champagne gourmand</div></div><div class="m-price">15&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Irish gourmand</div></div><div class="m-price">13,50&euro;</div></div>
   </div>
-</div>
 
-<div class="tab-content" id="tab-menus">
-  <div class="formule-card reveal">
-    <h3>Formule du Midi</h3>
-    <div class="formule-price">17&euro;</div>
-    <ul>
-      <li>Plat du jour + dessert</li>
-      <li>Ou entr&eacute;e + plat du jour</li>
-      <li>Du lundi au vendredi (sauf sam. &amp; dim.)</li>
-      <li>Produits frais, cuisin&eacute;s sur place</li>
-    </ul>
-  </div>
-  <div class="formule-card reveal">
-    <h3>Formule 3 Temps</h3>
-    <div class="formule-price">26&euro;</div>
-    <ul>
-      <li>Entr&eacute;e + Plat + Dessert</li>
-      <li>S&eacute;lection du chef selon l'arriv&eacute;e du march&eacute;</li>
-      <li>Disponible midi &amp; soir</li>
-      <li>Accord mets &amp; vins possible sur demande</li>
-    </ul>
-  </div>
-  <p style="font-size:.77rem;color:var(--gris);margin-top:12px">Les menus &eacute;voluent selon les saisons. N'h&eacute;sitez pas &agrave; nous appeler pour conna&icirc;tre le plat du jour.</p>
-</div>
-
-<div class="tab-content" id="tab-boissons">
-  <div class="bois-grid">
-    <div class="bois-card reveal">
-      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=500&q=80" alt=""/>
-      <div class="bois-card-body"><h4>Cave &agrave; Vins</h4><p>S&eacute;lection de vins de France &mdash; rouge, blanc, ros&eacute;, p&eacute;tillant. Conseils &agrave; la carte.</p></div>
-    </div>
-    <div class="bois-card reveal">
-      <img src="https://images.unsplash.com/photo-1560512823-829485b8bf24?auto=format&fit=crop&w=500&q=80" alt=""/>
-      <div class="bois-card-body"><h4>Cocktails</h4><p>Cocktails classiques &amp; cr&eacute;ations maison. Mocktails disponibles.</p></div>
-    </div>
-    <div class="bois-card reveal">
-      <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?auto=format&fit=crop&w=500&q=80" alt=""/>
-      <div class="bois-card-body"><h4>Caf&eacute; &amp; Chaud</h4><p>Caf&eacute;s, th&eacute;s, chocolat chaud. Disponibles toute la journ&eacute;e.</p></div>
-    </div>
-    <div class="bois-card reveal">
-      <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=500&q=80" alt=""/>
-      <div class="bois-card-body"><h4>Bi&egrave;res</h4><p>Bi&egrave;res pression locales &amp; en bouteille, avec ou sans alcool.</p></div>
-    </div>
-  </div>
   <div class="m-cat">
-    <div class="m-cat-title">Bi&egrave;res pression</div>
-    <div class="m-item"><div class="m-name">Bi&egrave;re du moment (demi)</div><div class="m-price">4&euro;</div></div>
-    <div class="m-item"><div class="m-name">Bi&egrave;re locale (demi)</div><div class="m-price">5&euro;</div></div>
-    <div class="m-item"><div class="m-name">Bi&egrave;re sans alcool</div><div class="m-price">4&euro;</div></div>
+    <div class="m-cat-title">Glaces &mdash; Artisan Glacier</div>
+    <div class="m-item"><div><div class="m-name">La Dame Blanche</div></div><div class="m-price">8,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Caf&eacute; ou chocolat li&eacute;geois</div></div><div class="m-price">8,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">D&eacute;lice de fruits</div><div class="m-desc">Sorbet fruit de la passion, mangue, ananas, coulis fruits de la passion, chantilly</div></div><div class="m-price">9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">La Cardinal</div><div class="m-desc">Glace caramel, glace vanille, coulis caramel maison, chantilly maison, sp&eacute;culos</div></div><div class="m-price">9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Le Colonel</div><div class="m-desc">Glace citron vert, 6cl de vodka</div></div><div class="m-price">9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">1 boule</div><div class="m-desc">Vanille, fraise, chocolat, caf&eacute;, caramel, noix de coco, fruit de la passion, mangue, ananas, menthe/chocolat, citron vert</div></div><div class="m-price">3,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">2 boules</div></div><div class="m-price">6,50&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">3 boules</div></div><div class="m-price">8&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Suppl&eacute;ment chantilly</div></div><div class="m-price">1&euro;</div></div>
   </div>
+
+</div>
+</div>
+
+<!-- TAB MENUS -->
+<div class="tab-content" id="tab-menus">
+<div class="menu-section">
+
+  <div class="formule-card reveal">
+    <h3>Menu du Jour</h3>
+    <div class="formule-sub">Uniquement le midi sauf week-ends &amp; jours f&eacute;ri&eacute;s, jusqu'&agrave; &eacute;puisement</div>
+    <ul>
+      <li>Entr&eacute;e &amp; Plat <em>ou</em> Plat &amp; Dessert &mdash; <strong style="color:var(--or)">17,50&euro;</strong></li>
+      <li>Entr&eacute;e, Plat &amp; Dessert &mdash; <strong style="color:var(--or)">22&euro;</strong></li>
+    </ul>
+  </div>
+
+  <div class="formule-card reveal">
+    <h3>Com&eacute;die</h3>
+    <div class="formule-sub">Entr&eacute;e &amp; Plat <em>ou</em> Plat &amp; Dessert : 28&euro; &nbsp;&mdash;&nbsp; Entr&eacute;e, Plat &amp; Dessert : 35&euro;</div>
+    <ul>
+      <li><strong>Entr&eacute;es au choix</strong> &mdash; &OElig;uf mimosa de chez mamie / Feuilleté d'échalotes caramélisées au miel / Foie gras de canard</li>
+      <li><strong>Plats au choix</strong> &mdash; Cuisse de canard / Fondant d'agneau / Burger l'Original / Pav&eacute; de saumon</li>
+      <li><strong>Desserts au choix</strong> &mdash; Assortiment de fromages / Sarrasin au lait / Mousse au chocolat</li>
+    </ul>
+  </div>
+
+  <div class="formule-card reveal">
+    <h3>Menu Bambin</h3>
+    <div class="formule-price">13,50&euro;</div>
+    <ul>
+      <li>Jusqu'&agrave; 10 ans</li>
+      <li>Steak hach&eacute; <em>ou</em> Filet de poulet</li>
+      <li>Frites <em>ou</em> L&eacute;gumes</li>
+      <li>Boule de glace <em>ou</em> Sarrasin au lait</li>
+      <li>Petit diabolo <em>ou</em> Sirop &agrave; l'eau</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- TAB BOISSONS -->
+<div class="tab-content" id="tab-boissons">
+<div class="menu-section">
+
+  <div class="m-cat">
+    <div class="m-cat-title">Vins Blancs</div>
+    <div class="vin-cols">
+      <div class="vin-item"><div class="vin-name">Chardonnay Ropiteau V.D.F</div><div class="vin-domaine">Les Plans Nobles</div><div class="vin-prix"><span>Verre 12,5cl <strong>5&euro;</strong></span><span>Verre 25cl <strong>10&euro;</strong></span><span>Bouteille <strong>30&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Quincy AOP</div><div class="vin-domaine">Domaine des Bruniers</div><div class="vin-prix"><span>Verre 12,5cl <strong>7,50&euro;</strong></span><span>Verre 25cl <strong>15&euro;</strong></span><span>Bouteille <strong>45&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Viognier Le Faillet</div><div class="vin-domaine">Domaine Grand Chemin I.G.P</div><div class="vin-prix"><span>Verre 12,5cl <strong>6&euro;</strong></span><span>Verre 25cl <strong>12&euro;</strong></span><span>Bouteille <strong>33&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">C&ocirc;tes de Gascogne Moelleux</div><div class="vin-domaine">Millet</div><div class="vin-prix"><span>Verre 12,5cl <strong>5,50&euro;</strong></span><span>Verre 25cl <strong>11&euro;</strong></span><span>Bouteille <strong>29&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Muscadet sur Lie</div><div class="vin-domaine">Prends pas le Melon A.O.P</div><div class="vin-prix"><span>Verre 12,5cl <strong>4,50&euro;</strong></span><span>Verre 25cl <strong>9&euro;</strong></span><span>Bouteille <strong>27&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">M&acirc;con Milly Lamartine</div><div class="vin-domaine">Les Arbillons A.O.P</div><div class="vin-prix"><span>Verre 12,5cl <strong>6,50&euro;</strong></span><span>Verre 25cl <strong>13&euro;</strong></span><span>Bouteille <strong>39&euro;</strong></span></div></div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Vins Ros&eacute;s</div>
+    <div class="vin-cols">
+      <div class="vin-item"><div class="vin-name">C&ocirc;te de Provence</div><div class="vin-domaine">Masfleurey A.O.C</div><div class="vin-prix"><span>Verre 12,5cl <strong>6&euro;</strong></span><span>Verre 25cl <strong>12&euro;</strong></span><span>Bouteille <strong>36&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Corse IGP</div><div class="vin-domaine">San Pieru</div><div class="vin-prix"><span>Verre 12,5cl <strong>4,50&euro;</strong></span><span>Verre 25cl <strong>9&euro;</strong></span><span>Bouteille <strong>27&euro;</strong></span></div></div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Vins Rouges</div>
+    <div class="vin-cols">
+      <div class="vin-item"><div class="vin-name">Graves AOP</div><div class="vin-domaine">Chanteloiseau</div><div class="vin-prix"><span>Verre 12,5cl <strong>6,50&euro;</strong></span><span>Verre 25cl <strong>13&euro;</strong></span><span>Bouteille <strong>39&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Corbi&egrave;res BIO</div><div class="vin-domaine">Peyre Nobles</div><div class="vin-prix"><span>Verre 12,5cl <strong>5&euro;</strong></span><span>Verre 25cl <strong>10&euro;</strong></span><span>Bouteille <strong>29&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Saumur Champigny AOP</div><div class="vin-domaine">Les Loges</div><div class="vin-prix"><span>Verre 12,5cl <strong>6&euro;</strong></span><span>Verre 25cl <strong>12&euro;</strong></span><span>Bouteille <strong>35&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Pic Saint-Loup AOP</div><div class="vin-domaine">Puech-Haut Les Demoiselles de Lavabre</div><div class="vin-prix"><span>Bouteille <strong>45&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Crozes-Hermitage AOC</div><div class="vin-domaine">Domaine E. Guigal</div><div class="vin-prix"><span>Bouteille <strong>48&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Ch&acirc;teauneuf-du-Pape AOP</div><div class="vin-domaine">Domaine Guigal</div><div class="vin-prix"><span>Bouteille <strong>76&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Moulin &agrave; vent</div><div class="vin-domaine">Ch&acirc;teau des Jacques</div><div class="vin-prix"><span>Bouteille <strong>55&euro;</strong></span></div></div>
+      <div class="vin-item"><div class="vin-name">Vacqueyras cuv&eacute;e</div><div class="vin-domaine">Domaine de la Verde A.O.P</div><div class="vin-prix"><span>Bouteille <strong>59&euro;</strong></span></div></div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Les Bulles</div>
+    <div class="m-item"><div><div class="m-name">Prosecco Ponte Villoni</div></div><div class="m-price">Coupe 6&euro; &nbsp;&middot;&nbsp; Bouteille 28&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Champagne Mo&euml;t &amp; Chandon</div></div><div class="m-price">Coupe 12&euro; &nbsp;&middot;&nbsp; Bouteille 80&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Ap&eacute;ritifs</div>
+    <div class="cocktail-cols">
+      <div>
+        <div class="sub-cat-title">Les Classiques</div>
+        <div class="m-item"><div class="m-name">Kir</div><div class="m-price">5,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Kir Breton</div><div class="m-price">5,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Kir P&eacute;tillant</div><div class="m-price">6,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Ricard</div><div class="m-price">4&euro;</div></div>
+        <div class="m-item"><div class="m-name">Martini rouge ou blanc</div><div class="m-price">5&euro;</div></div>
+        <div class="m-item"><div class="m-name">Suze ou Suze/Cassis</div><div class="m-price">5&euro;</div></div>
+        <div class="m-item"><div class="m-name">Campari</div><div class="m-price">7&euro;</div></div>
+      </div>
+      <div>
+        <div class="sub-cat-title">Whiskies</div>
+        <div class="m-item"><div class="m-name">Johnnie Walker Red Label</div><div class="m-price">7&euro;</div></div>
+        <div class="m-item"><div class="m-name">Jack Daniel's</div><div class="m-price">9&euro;</div></div>
+        <div class="m-item"><div class="m-name">Aberlour 10 ans</div><div class="m-price">10&euro;</div></div>
+        <div class="m-item"><div class="m-name">Glenmorangie 10 ans</div><div class="m-price">12&euro;</div></div>
+        <div class="m-item"><div class="m-name">Cardhu</div><div class="m-price">12&euro;</div></div>
+        <div class="m-item"><div class="m-name">Ardbeg Ten</div><div class="m-price">12&euro;</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Vodkas &amp; Rhums</div>
+    <div class="cocktail-cols">
+      <div>
+        <div class="sub-cat-title">Vodkas</div>
+        <div class="m-item"><div class="m-name">Smirnoff Red</div><div class="m-price">7&euro;</div></div>
+        <div class="m-item"><div class="m-name">Belvedere Pure</div><div class="m-price">9&euro;</div></div>
+      </div>
+      <div>
+        <div class="sub-cat-title">Rhums</div>
+        <div class="m-item"><div class="m-name">Diplomatico R. Exclusiva</div><div class="m-price">10&euro;</div></div>
+        <div class="m-item"><div class="m-name">Don Papa &laquo;&nbsp;Baroko&nbsp;&raquo; R</div><div class="m-price">12&euro;</div></div>
+        <div class="m-item"><div class="m-name">Zacapa 23</div><div class="m-price">11&euro;</div></div>
+        <div class="m-item"><div class="m-name">Zaya 16 ans Grande R&eacute;serve</div><div class="m-price">13&euro;</div></div>
+        <div class="m-item"><div class="m-name">Eminente Reserva</div><div class="m-price">14&euro;</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Cocktails</div>
+    <div class="cocktail-cols">
+      <div>
+        <div class="sub-cat-title">Long Drink</div>
+        <div class="m-item"><div class="m-name">Mojito classique</div><div class="m-price">9,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Mojito fraise ou passion</div><div class="m-price">10&euro;</div></div>
+        <div class="m-item"><div class="m-name">Moscow Mule</div><div class="m-price">9,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Spritz</div><div class="m-price">9,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Gin Tonic</div><div class="m-price">9&euro;</div></div>
+        <div class="m-item"><div class="m-name">Americano</div><div class="m-price">9&euro;</div></div>
+        <div class="m-item"><div class="m-name">Ty Punch</div><div class="m-price">8,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Ca&iuml;pirina</div><div class="m-price">8,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Margarita</div><div class="m-price">9&euro;</div></div>
+        <div class="m-item"><div class="m-name">Da&iuml;quiri</div><div class="m-price">9&euro;</div></div>
+      </div>
+      <div>
+        <div class="sub-cat-title">Mocktails sans alcool</div>
+        <div class="m-item"><div class="m-name">Virgin Colada</div><div class="m-price">7,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Le Pomm's</div><div class="m-price">7,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Le Bena-Bena</div><div class="m-price">7,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Le Pink</div><div class="m-price">7,50&euro;</div></div>
+        <div class="m-item"><div class="m-name">Virgin Mojito</div><div class="m-price">7&euro;</div></div>
+        <div class="m-item"><div class="m-name">Virgin Mojito Fruits</div><div class="m-price">8&euro;</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Bi&egrave;res</div>
+    <div class="m-item"><div><div class="m-name">Cardinal pression</div></div><div class="m-price">25cl 4&euro; &middot; 33cl 6&euro; &middot; 50cl 8&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Affligem blonde</div></div><div class="m-price">25cl 4,50&euro; &middot; 33cl 6,50&euro; &middot; 50cl 9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Affligem blanche</div></div><div class="m-price">25cl 4,50&euro; &middot; 33cl 6,50&euro; &middot; 50cl 9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Gallia West IPA</div></div><div class="m-price">25cl 4,50&euro; &middot; 33cl 6,50&euro; &middot; 50cl 9&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Pelican</div></div><div class="m-price">25cl 5&euro; &middot; 33cl 7&euro; &middot; 50cl 10&euro;</div></div>
+    <div class="m-item"><div><div class="m-name">Bi&egrave;res bouteilles</div><div class="m-desc">Desperados &middot; Duvel &middot; Lindemans Kriek 25cl</div></div><div class="m-price">7&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Eaux &amp; Softs</div>
+    <div class="m-item"><div class="m-name">Vittel 50cl</div><div class="m-price">4&euro;</div></div>
+    <div class="m-item"><div class="m-name">Vittel 75cl</div><div class="m-price">6&euro;</div></div>
+    <div class="m-item"><div class="m-name">Sanpellegrino 50cl</div><div class="m-price">4&euro;</div></div>
+    <div class="m-item"><div class="m-name">Jus de fruits 25cl (orange, ananas, pomme)</div><div class="m-price">4,50&euro;</div></div>
+    <div class="m-item"><div class="m-name">Orange ou citron press&eacute;</div><div class="m-price">5&euro;</div></div>
+    <div class="m-item"><div class="m-name">Coca-Cola 33cl</div><div class="m-price">4,50&euro;</div></div>
+  </div>
+
+  <div class="m-cat">
+    <div class="m-cat-title">Les Caf&eacute;s</div>
+    <div class="m-item"><div class="m-name">Caf&eacute;</div><div class="m-price">1,90&euro;</div></div>
+    <div class="m-item"><div class="m-name">Double caf&eacute;</div><div class="m-price">3,80&euro;</div></div>
+    <div class="m-item"><div class="m-name">Noisette</div><div class="m-price">2&euro;</div></div>
+  </div>
+
+</div>
 </div>
 
 <footer>
   <div class="ft-logo">LE CARDINAL</div><div class="ft-tag">Bar &middot; Brasserie &middot; Vannes</div>
-  <div class="ft-soc">
-    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-  </div>
+  <div class="ft-soc"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div>
   <div class="ft-legal"><a data-page="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div>
 </footer>
 </div>
 
-<!-- ===== PAGE CONTACT ===== -->
+<!-- ═══════════ PAGE CONTACT ═══════════ -->
 <div class="page" id="page-contact">
-<div class="contact-hero">
-  <div class="ch-bg"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
-  <div class="ch-txt">
-    <p class="eyebrow">Venir nous voir</p>
-    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:300;color:var(--creme)">Contact &amp; <em style="font-style:italic;color:var(--orcl)">R&eacute;servation</em></h1>
+<div class="page-hero ph-short">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1600&q=80" alt=""/></div>
+  <div class="page-hero-txt" style="width:100%;text-align:center">
+    <p class="eyebrow" style="color:#e8c97a">Venir nous voir</p>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3.2rem);font-weight:300;color:var(--creme)">Contact &amp; <em>R&eacute;servation</em></h1>
   </div>
 </div>
 <div class="contact-body">
-  <h2 class="c-infos-title">Nous <em>trouver</em></h2>
-  <div class="c-row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="c-lbl">Adresse</div><div class="c-val">7 place Saint-Pierre, 56000 Vannes<br/>Face &agrave; la Cath&eacute;drale</div></div></div>
-  <div class="c-row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="c-lbl">Horaires</div><div class="c-val">Lun&ndash;Sam : 9h &ndash; 23h<br/>Dimanche : 9h30 &ndash; 19h</div></div></div>
-  <div class="c-row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72 12.05 12.05 0 00.7 2.81 2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.7A2 2 0 0122 16.92z"/></svg><div><div class="c-lbl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="c-val">02 97 68 24 23</a></div></div>
-  <div class="c-row"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="c-lbl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="c-val">cardinalvannes@gmail.com</a></div></div>
+  <h2 class="c-section-title">Nous <em>trouver</em></h2>
+  <p style="font-size:.85rem;line-height:1.9;color:var(--txt2);margin-bottom:22px">Situ&eacute;e en plein c&oelig;ur historique de Vannes, la Brasserie Le Cardinal vous accueille 7j/7, face &agrave; la majestueuse cath&eacute;drale Saint-Pierre. Pour r&eacute;server une table ou nous poser une question, contactez-nous par t&eacute;l&eacute;phone ou via le formulaire ci-dessous.</p>
+  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="c-lbl">Adresse</div><div class="c-val">7 place Saint-Pierre, 56000 Vannes &mdash; Face &agrave; la Cath&eacute;drale</div></div></div>
+  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="c-lbl">Horaires</div><div class="c-val">Lun&ndash;Sam : 9h&ndash;23h &nbsp;&middot;&nbsp; Dimanche : 9h30&ndash;19h</div></div></div>
+  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="c-lbl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="c-val">02 97 68 24 23</a></div></div>
+  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="c-lbl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="c-val">cardinalvannes@gmail.com</a></div></div>
   <div class="c-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy"></iframe></div>
   <h2 class="c-form-title">Nous <em>&eacute;crire</em></h2>
   <form id="contact-form">
@@ -661,96 +817,83 @@ a.c-val:hover{color:var(--orcl)}
       <div class="fg"><label>T&eacute;l&eacute;phone</label><input type="tel" placeholder="06 XX XX XX XX"/></div>
     </div>
     <div class="fg"><label>Email</label><input type="email" placeholder="votre@email.com" required/></div>
-    <div class="fg"><label>Nombre de personnes</label>
-      <select><option>1 personne</option><option selected>2 personnes</option><option>3 personnes</option><option>4 personnes</option><option>5&ndash;6 personnes</option><option>7 et plus</option></select>
-    </div>
+    <div class="fg"><label>Nombre de personnes</label><select><option>1 personne</option><option selected>2 personnes</option><option>3 personnes</option><option>4 personnes</option><option>5&ndash;6 personnes</option><option>7 et plus</option></select></div>
     <div class="fg"><label>Message ou date souhait&eacute;e</label><textarea placeholder="Pr&eacute;cisez la date, l&rsquo;heure et toute information utile..."></textarea></div>
     <button type="submit" class="f-submit">Envoyer le message</button>
-    <p class="f-note">Vous pouvez aussi nous appeler directement au <a href="tel:0297682423" style="color:var(--orcl)">02 97 68 24 23</a></p>
+    <p class="f-note">Ou appelez-nous directement au <a href="tel:0297682423" style="color:var(--or)">02 97 68 24 23</a></p>
   </form>
 </div>
 <footer>
   <div class="ft-logo">LE CARDINAL</div><div class="ft-tag">Bar &middot; Brasserie &middot; Vannes</div>
-  <div class="ft-soc">
-    <a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-    <a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-  </div>
+  <div class="ft-soc"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div>
   <div class="ft-legal"><a data-page="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div>
 </footer>
 </div>
 
-<!-- ===== PAGE MENTIONS ===== -->
+<!-- ═══════════ PAGE MENTIONS ═══════════ -->
 <div class="page" id="page-mentions">
-<div class="ml-hero"><h1>Mentions <em>L&eacute;gales</em></h1></div>
+<div class="ml-hero-wrap"><h1>Mentions <em>L&eacute;gales</em></h1></div>
 <div class="ml-body">
   <div class="ml-sec"><h2>Identification</h2><p>D&eacute;nomination : La Brasserie Le Cardinal<br/>Responsable : M. Mickael Cousin<br/>Adresse : 7 place Saint-Pierre, 56000 Vannes<br/>T&eacute;l : 02 97 68 24 23 &mdash; Email : cardinalvannes@gmail.com</p></div>
   <div class="ml-sec"><h2>H&eacute;bergement</h2><p>OVH SAS &mdash; 2 rue Kellermann, 59100 Roubaix, France</p></div>
   <div class="ml-sec"><h2>Cr&eacute;dits</h2><p>Conception &amp; r&eacute;alisation : Agence Close-up &mdash; 02 90 73 53 13<br/>Images : Unsplash (licence libre)</p></div>
   <div class="ml-sec"><h2>Propri&eacute;t&eacute; intellectuelle</h2><p>L'ensemble du site est prot&eacute;g&eacute; par le droit d'auteur. Toute reproduction est interdite sans autorisation pr&eacute;alable.</p></div>
   <div class="ml-sec"><h2>Donn&eacute;es personnelles</h2><p>Conform&eacute;ment au RGPD, vous disposez d'un droit d'acc&egrave;s, de rectification et de suppression. Contact : cardinalvannes@gmail.com</p></div>
-  <p style="margin-top:28px"><a data-page="accueil" style="color:var(--orcl);cursor:pointer">&larr; Retour &agrave; l'accueil</a></p>
+  <p style="margin-top:24px"><a data-page="accueil" style="color:var(--or);cursor:pointer;font-size:.83rem">&larr; Retour &agrave; l'accueil</a></p>
 </div>
 </div>
 
 <script>
-(function() {
-  function goTo(page, tab) {
-    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    var t = document.getElementById('page-' + page);
-    if (t) t.classList.add('active');
-    document.querySelectorAll('.nav-links a[data-page]').forEach(function(a) {
-      a.classList.toggle('act', a.dataset.page === page);
+(function(){
+  function goTo(page,tab){
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+    var t=document.getElementById('page-'+page);
+    if(t)t.classList.add('active');
+    document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+      a.classList.toggle('act',a.dataset.page===page);
     });
-    var nav = document.getElementById('nav');
-    if (nav) { nav.classList.toggle('solid', page !== 'accueil'); nav.classList.remove('scrolled'); }
-    window.scrollTo(0, 0);
-    if (tab) { setTimeout(function() { switchTab(tab); }, 50); }
-    setTimeout(initReveal, 80);
+    window.scrollTo(0,0);
+    if(tab){setTimeout(function(){switchTab(tab)},60)}
+    setTimeout(initReveal,80);
   }
-  function switchTab(name) {
-    document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-    document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
-    var btn = document.querySelector('.tab-btn[data-tab="' + name + '"]');
-    if (btn) btn.classList.add('active');
-    var tc = document.getElementById('tab-' + name);
-    if (tc) tc.classList.add('active');
+  function switchTab(name){
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+    document.querySelectorAll('.tab-content').forEach(function(c){c.classList.remove('active')});
+    var btn=document.querySelector('.tab-btn[data-tab="'+name+'"]');
+    if(btn)btn.classList.add('active');
+    var tc=document.getElementById('tab-'+name);
+    if(tc)tc.classList.add('active');
   }
-  function initReveal() {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('vis'); });
-    }, { threshold: 0.06 });
-    document.querySelectorAll('.page.active .reveal').forEach(function(el) {
-      el.classList.remove('vis'); obs.observe(el);
+  function initReveal(){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis')});
+    },{threshold:0.06});
+    document.querySelectorAll('.page.active .reveal').forEach(function(el){
+      el.classList.remove('vis');obs.observe(el);
     });
   }
-  function closeMM() {
-    var hb = document.getElementById('hbg'), mm = document.getElementById('mm');
-    if (hb) hb.classList.remove('open');
-    if (mm) mm.classList.remove('open');
-    document.body.style.overflow = '';
+  function closeMM(){
+    var hb=document.getElementById('hbg'),mm=document.getElementById('mm');
+    if(hb)hb.classList.remove('open');
+    if(mm)mm.classList.remove('open');
+    document.body.style.overflow='';
   }
-  document.addEventListener('click', function(e) {
-    var el = e.target.closest('[data-goto]');
-    if (el) { goTo(el.dataset.goto, el.dataset.tab || null); closeMM(); return; }
-    var tb = e.target.closest('.tab-btn[data-tab]');
-    if (tb) { switchTab(tb.dataset.tab); return; }
-    var navLink = e.target.closest('.nav-links a[data-page], .mobile-menu a[data-page], footer a[data-page], .bottom-bar button[data-page]');
-    if (navLink) { goTo(navLink.dataset.page); closeMM(); return; }
-    var logo = e.target.closest('#nav-logo');
-    if (logo) { goTo('accueil'); return; }
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('[data-goto]');
+    if(el){goTo(el.dataset.goto,el.dataset.tab||null);closeMM();return}
+    var tb=e.target.closest('.tab-btn[data-tab]');
+    if(tb){switchTab(tb.dataset.tab);return}
+    var navLink=e.target.closest('.nav-links a[data-page],.mobile-menu a[data-page],footer a[data-page],.bottom-bar button[data-page]');
+    if(navLink){goTo(navLink.dataset.page);closeMM();return}
+    var logo=e.target.closest('#nav-logo');
+    if(logo){goTo('accueil');return}
   });
-  document.addEventListener('DOMContentLoaded', function() {
-    var hb = document.getElementById('hbg'), mm = document.getElementById('mm'), mmX = document.getElementById('mmX');
-    if (hb && mm) { hb.addEventListener('click', function() { hb.classList.toggle('open'); mm.classList.toggle('open'); document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : ''; }); }
-    if (mmX) mmX.addEventListener('click', closeMM);
-    var form = document.getElementById('contact-form');
-    if (form) { form.addEventListener('submit', function(e) { e.preventDefault(); var btn = form.querySelector('.f-submit'); btn.textContent = 'Message envoyé ✓'; btn.style.background = '#4a7c59'; btn.disabled = true; setTimeout(function() { btn.textContent = 'Envoyer le message'; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000); }); }
-    var lastY = 0;
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('nav');
-      var active = document.querySelector('.page.active');
-      if (nav && active && active.id === 'page-accueil') nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
+  document.addEventListener('DOMContentLoaded',function(){
+    var hb=document.getElementById('hbg'),mm=document.getElementById('mm'),mmX=document.getElementById('mmX');
+    if(hb&&mm){hb.addEventListener('click',function(){hb.classList.toggle('open');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':'';})}
+    if(mmX)mmX.addEventListener('click',closeMM);
+    var form=document.getElementById('contact-form');
+    if(form){form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('.f-submit');btn.textContent='Message envoyé ✓';btn.style.background='#4a7c59';btn.disabled=true;setTimeout(function(){btn.textContent='Envoyer le message';btn.style.background='';btn.disabled=false;form.reset()},3000)})}
     initReveal();
   });
 })();
