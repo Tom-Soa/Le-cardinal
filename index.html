@@ -18,7 +18,8 @@
   --bord:#6b1e2a;
 }
 html{scroll-behavior:smooth}
-body{background:var(--noir);color:var(--creme);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden}
+body{background:var(--noir);color:var(--creme);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden;font-variant-numeric:normal}
+.mn,.mp,.stit,.hhtit,.hhtit *,.ctacard h2,.cttl{font-variant-numeric:lining-nums}
 .page{display:none;min-height:100vh}.page.active{display:block}
 
 /* NAV */
@@ -385,10 +386,10 @@ a.cv:hover{color:var(--orcl)}
 <section class="shist">
   <div class="shist-inner">
     <div class="shist-txt">
-      <p class="ey rv">Depuis 2021</p>
-      <h2 class="stit rv">Un <em>&eacute;crin</em> au c&oelig;ur<br/>de Vannes</h2>
-      <p class="sbod rv">Nich&eacute;e dans une maison du 16e si&egrave;cle enti&egrave;rement restaur&eacute;e, face &agrave; la cath&eacute;drale Saint-Pierre, Le Cardinal est une brasserie au charme intemporel.</p>
-      <p class="sbod rv">Ambiance feutr&eacute;e, terrasse ensoleill&eacute;e, cuisine du march&eacute; et piano jazz le jeudi soir.</p>
+      <p class="ey rv">Un lieu hors du temps</p>
+      <h2 class="stit rv">Restaurant &mdash; <em>Bar</em></h2>
+      <p class="sbod rv">Situ&eacute; dans le c&oelig;ur historique de Vannes, aux pieds de la cath&eacute;drale, Le Cardinal est nich&eacute; dans une maison ancienne par&eacute;e de colombages. Il vous re&ccedil;oit dans son &eacute;crin de velours et son ambiance chaleureuse.</p>
+      <p class="sbod rv" style="margin-top:16px">Bar-brasserie traditionnel qui vous emportera dans son ambiance cosy gr&acirc;ce &agrave; un savoureux m&eacute;lange de <strong style="color:var(--creme)">modernit&eacute;</strong> et de <strong style="color:var(--creme)">tradition</strong> &mdash; objets chin&eacute;s, tons feutr&eacute;s, terrasse esprit bistrot face &agrave; la cath&eacute;drale.</p>
       <blockquote class="hq rv">&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote>
       <p class="haut rv">&mdash; Ernest Hemingway</p>
       <div class="shist-actions rv">
@@ -396,11 +397,9 @@ a.cv:hover{color:var(--orcl)}
         <button class="btno" data-goto="contact">R&eacute;server</button>
       </div>
     </div>
-    <div class="shist-photos">
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="" loading="lazy"/></div>
+    <div style="display:grid;grid-template-columns:1fr;gap:14px">
+      <div class="pimg rv" style="aspect-ratio:4/3;border-radius:3px"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="" loading="lazy"/></div>
+      <div class="pimg rv" style="aspect-ratio:16/9;border-radius:3px"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80" alt="" loading="lazy"/></div>
     </div>
   </div>
 </section>
@@ -412,11 +411,10 @@ a.cv:hover{color:var(--orcl)}
       <h2 class="stit rv">Une carte <em>g&eacute;n&eacute;reuse</em></h2>
       <p class="sbod rv">Produits frais, hu&icirc;tres de Baden, burgers maison, cave &agrave; vins.</p>
     </div>
-    <div class="mvg">
-      <div class="mvc wide rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">La Carte</div><div class="mvd">Entr&eacute;es &middot; Poissons &middot; Viandes &middot; Desserts</div></div></div>
-      <div class="mvc rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Hu&icirc;tres &amp; Mer</div><div class="mvd">Baden N&deg;3</div></div><div class="mvp">d&egrave;s 10&euro;</div></div>
-      <div class="mvc rv" data-goto="menu" data-tab="boissons"><div class="pimg"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Cave &agrave; Vins</div><div class="mvd">Vins &amp; cocktails</div></div></div>
-      <div class="mvc rv" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Burgers &amp; Tapas</div><div class="mvd">Faits maison</div></div><div class="mvp">d&egrave;s 17&euro;</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:0">
+      <div class="mvc rv" style="aspect-ratio:3/4" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">La Carte</div><div class="mvd">Entr&eacute;es &middot; Poissons &middot; Viandes &middot; Desserts</div></div></div>
+      <div class="mvc rv" style="aspect-ratio:3/4" data-goto="menu"><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Hu&icirc;tres &amp; Mer</div><div class="mvd">Baden N&deg;3 &mdash; d&egrave;s 10&euro;</div></div></div>
+      <div class="mvc rv" style="aspect-ratio:3/4" data-goto="menu" data-tab="boissons"><div class="pimg"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="" loading="lazy"/></div><div class="mvo"><div class="mvt">Cave &agrave; Vins</div><div class="mvd">Vins &amp; cocktails</div></div></div>
     </div>
     <div class="smenu-cta rv"><button class="btnp" data-goto="menu">Voir la carte compl&egrave;te</button></div>
   </div>
@@ -426,14 +424,12 @@ a.cv:hover{color:var(--orcl)}
   <div class="sgal-inner">
     <p class="ey rv">Ambiance</p>
     <h2 class="stit rv">Le <em>Cardinal</em> en images</h2>
-    <div class="gal">
-      <div class="pimg tall rv"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="" loading="lazy"/></div>
-      <div class="pimg rv"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="" loading="lazy"/></div>
+    <div class="gal" style="grid-template-columns:repeat(3,1fr);gap:10px;margin-top:36px">
+      <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="" loading="lazy"/></div>
+      <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="" loading="lazy"/></div>
     </div>
-    <div class="igw rv"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank" class="igl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@lecardinal_vannes</a></div>
+    <div class="igw rv" style="margin-top:22px"><a href="https://www.instagram.com/lecardinal_vannes/" target="_blank" class="igl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@lecardinal_vannes</a></div>
   </div>
 </section>
 
@@ -446,7 +442,7 @@ a.cv:hover{color:var(--orcl)}
         <div class="locr rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="locl">Adresse</div><a href="https://maps.google.com/?q=Le+Cardinal+Vannes" target="_blank" class="locv">7 place Saint-Pierre<br/>56000 Vannes</a></div></div>
         <div class="locr rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="locl">Horaires</div><div class="locv">Lun&ndash;Sam&nbsp;: 9h&rarr;23h<br/>Dim&nbsp;: 9h30&rarr;19h</div></div></div>
         <div class="locr rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="locl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="locv">02 97 68 24 23</a></div></div>
-        <div class="locr rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="locl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="locv">cardinalvannes@gmail.com</a></div></div>
+        <div class="locr rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="locl">Email</div><a href="/cdn-cgi/l/email-protection#d3b0b2a1b7babdb2bfa5b2bdbdb6a093b4beb2babffdb0bcbe" class="locv"><span class="__cf_email__" data-cfemail="84e7e5f6e0edeae5e8f2e5eaeae1f7c4e3e9e5ede8aae7ebe9">[email&#160;protected]</span></a></div></div>
       </div>
     </div>
     <div class="locmap rv">
@@ -486,7 +482,7 @@ a.cv:hover{color:var(--orcl)}
     <div class="foot-col">
       <h4>Contact</h4>
       <a href="tel:0297682423">02 97 68 24 23</a>
-      <a href="mailto:cardinalvannes@gmail.com">cardinalvannes@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#8feceefdebe6e1eee3f9eee1e1eafccfe8e2eee6e3a1ece0e2"><span class="__cf_email__" data-cfemail="99faf8ebfdf0f7f8f5eff8f7f7fcead9fef4f8f0f5b7faf6f4">[email&#160;protected]</span></a>
       <a href="https://maps.google.com/?q=Le+Cardinal+Vannes" target="_blank">7 place Saint-Pierre, 56000 Vannes</a>
     </div>
   </div>
@@ -511,21 +507,34 @@ a.cv:hover{color:var(--orcl)}
     <p class="hhsub">Juin 2021 &mdash; Une maison du 16e si&egrave;cle, face &agrave; la Cath&eacute;drale</p>
   </div>
 </div>
-<div class="hist-alt">
-  <div class="ha-row rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">01 &mdash; Les origines</div><h3>Une maison du <em>16e si&egrave;cle</em></h3><p>Ouverte en juin 2021 dans une maison enti&egrave;rement restaur&eacute;e, au c&oelig;ur historique de Vannes. Apr&egrave;s des travaux importants, Le Cardinal a ouvert ses portes avec une ambition claire&nbsp;: offrir un lieu d'exception, hors du temps.</p></div></div>
-  <div class="ha-row ha-rev rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=900&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">02 &mdash; L'ambiance</div><h3>Cosy, <em>raffin&eacute;</em>, intemporel</h3><p>Une terrasse ensoleill&eacute;e face &agrave; la cath&eacute;drale Saint-Pierre. &Agrave; l'int&eacute;rieur, une d&eacute;coration tr&egrave;s soign&eacute;e aux accents feutr&eacute;s et raffin&eacute;s. Des objets chin&eacute;s, des tons profonds, une atmosph&egrave;re jazzy le jeudi soir.</p></div></div>
-  <div class="ha-row rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">03 &mdash; La cuisine</div><h3>Du march&eacute; &agrave; <em>l'assiette</em></h3><p>Tout est cuisin&eacute; sur place par le chef avec des produits frais achet&eacute;s chaque matin. Plats mijot&eacute;s, finger food, tapas, hu&icirc;tres du Golfe du Morbihan.</p></div></div>
-  <div class="ha-row ha-rev rv"><div class="ha-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=900&q=80" alt="" loading="lazy"/></div><div class="ha-txt"><div class="hnum">04 &mdash; Les &eacute;v&eacute;nements</div><h3>Soir&eacute;es <em>&agrave; th&egrave;mes</em> &amp; jazz</h3><p>Le Cardinal anime ses soir&eacute;es avec des &eacute;v&eacute;nements &agrave; th&egrave;mes tout au long de l'ann&eacute;e. Chaque jeudi soir, laissez-vous emporter par les notes du piano.</p></div></div>
+<div class="hist-alt" style="max-width:1200px;margin:0 auto;padding:80px 8%">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center" class="rv">
+    <div class="pimg" style="aspect-ratio:3/4;border-radius:3px"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="" loading="lazy"/></div>
+    <div>
+      <p class="ey" style="text-align:left;margin-bottom:14px">Le d&eacute;but d'une belle histoire</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--creme);line-height:1.2;margin-bottom:28px">Nich&eacute;e dans le c&oelig;ur <em style="font-style:italic;color:var(--orcl)">historique et m&eacute;di&eacute;val</em> de Vannes</h2>
+      <p style="font-size:.88rem;line-height:2;color:rgba(245,239,228,.65);margin-bottom:16px">La brasserie Le Cardinal a ouvert en juin 2021 dans une maison enti&egrave;rement restaur&eacute;e du 16e si&egrave;cle. C'est apr&egrave;s une r&eacute;novation totale du b&acirc;timent, des travaux importants de restauration et de d&eacute;coration, que le restaurant peut vous proposer sa cuisine de qualit&eacute; et locale, le tout dans une ambiance cosy et raffin&eacute;e.</p>
+      <p style="font-size:.88rem;line-height:2;color:rgba(245,239,228,.65);margin-bottom:16px">Terrasse ensoleill&eacute;e face &agrave; la cath&eacute;drale Saint-Pierre, Le Cardinal accueille ses visiteurs avec ses plats mijot&eacute;s, sa finger food, ses tapas, le tout cuisin&eacute; sur place par son chef avec des produits frais du march&eacute;.</p>
+      <p style="font-size:.88rem;line-height:2;color:rgba(245,239,228,.65);margin-bottom:32px">Du petit-d&eacute;jeuner &agrave; la soir&eacute;e planche-ap&eacute;ritif, une d&eacute;coration tr&egrave;s soign&eacute;e aux accents feutr&eacute;s et raffin&eacute;s. Soir&eacute;es &agrave; th&egrave;mes toute l'ann&eacute;e &mdash; et piano jazz chaque jeudi.</p>
+      <button class="btnp" data-goto="contact">R&eacute;server une table</button>
+    </div>
+  </div>
 </div>
 <div class="hcit"><div class="hcit-line"></div><blockquote class="hqc">&laquo;&nbsp;Le temps est la plus petite chose dont nous disposons.&nbsp;&raquo;</blockquote><p class="hautc">&mdash; Ernest Hemingway</p><div class="hcit-line"></div></div>
-<div class="mosec"><div class="mosaic4"><div class="pimg"><img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=500&q=80" alt="" loading="lazy"/></div></div></div>
+<div style="background:var(--brun);padding:60px 8%">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:1200px;margin:0 auto">
+    <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?w=600&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="" loading="lazy"/></div>
+    <div class="pimg rv" style="aspect-ratio:1;border-radius:2px"><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80" alt="" loading="lazy"/></div>
+  </div>
+</div><div class="pimg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="" loading="lazy"/></div><div class="pimg"><img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=500&q=80" alt="" loading="lazy"/></div></div></div>
 <div class="eqsec"><div class="eqsec-inner"><p class="ey" style="text-align:center">L'&eacute;quipe</p><h2 class="stit">Ceux qui font <em>Le Cardinal</em></h2><div class="eqg"><div class="eqc rv"><div class="pimg"><img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=80" alt="" loading="lazy"/></div><div class="eqb"><div class="eqn">Florian</div><div class="eqpo">Chef Cuisinier</div><div class="eqbi">Passionn&eacute; de cuisine et de voyages, il choisit chaque recette avec soin.</div></div></div><div class="eqc rv"><div class="pimg"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="" loading="lazy"/></div><div class="eqb"><div class="eqn">Antoine</div><div class="eqpo">Responsable de Salle</div><div class="eqbi">Au service de votre confort depuis le premier jour.</div></div></div></div></div></div>
 <div style="text-align:center;padding:56px 8% 72px" class="rv"><button class="btnp" data-goto="contact">R&eacute;server une table</button></div>
 <footer>
   <div class="foot-inner">
     <div class="foot-brand"><p>Bar &middot; Brasserie &middot; Vannes<br/>7 place Saint-Pierre, face &agrave; la Cath&eacute;drale</p></div>
     <div class="foot-col"><h4>Horaires</h4><p>Lun &ndash; Sam : 9h &rarr; 23h</p><p>Dimanche : 9h30 &rarr; 19h</p></div>
-    <div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="mailto:cardinalvannes@gmail.com">cardinalvannes@gmail.com</a></div>
+    <div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="/cdn-cgi/l/email-protection#b8dbd9cadcd1d6d9d4ced9d6d6ddcbf8dfd5d9d1d496dbd7d5"><span class="__cf_email__" data-cfemail="593a382b3d303738352f3837373c2a193e34383035773a3634">[email&#160;protected]</span></a></div>
   </div>
   <div class="foot-bottom"><div class="foot-soc"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="foot-leg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></div>
 </footer>
@@ -621,7 +630,7 @@ a.cv:hover{color:var(--orcl)}
 </div>
 
 <footer>
-  <div class="foot-inner"><div class="foot-brand"><p>Bar &middot; Brasserie &middot; Vannes<br/>7 place Saint-Pierre</p></div><div class="foot-col"><h4>Horaires</h4><p>Lun &ndash; Sam : 9h &rarr; 23h</p><p>Dim : 9h30 &rarr; 19h</p></div><div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="mailto:cardinalvannes@gmail.com">cardinalvannes@gmail.com</a></div></div>
+  <div class="foot-inner"><div class="foot-brand"><p>Bar &middot; Brasserie &middot; Vannes<br/>7 place Saint-Pierre</p></div><div class="foot-col"><h4>Horaires</h4><p>Lun &ndash; Sam : 9h &rarr; 23h</p><p>Dim : 9h30 &rarr; 19h</p></div><div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="/cdn-cgi/l/email-protection#06656774626f68676a70676868637546616b676f6a2865696b"><span class="__cf_email__" data-cfemail="74171506101d1a151802151a1a1107341319151d185a171b19">[email&#160;protected]</span></a></div></div>
   <div class="foot-bottom"><div class="foot-soc"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="foot-leg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></div>
 </footer>
 </div>
@@ -635,7 +644,7 @@ a.cv:hover{color:var(--orcl)}
     <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="cl">Adresse</div><a href="https://maps.google.com/?q=Le+Cardinal+Vannes" target="_blank" class="cv">7 place Saint-Pierre<br/>56000 Vannes</a></div></div>
     <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="cl">Horaires</div><div class="cv">Lun&ndash;Sam&nbsp;: 9h&rarr;23h<br/>Dim&nbsp;: 9h30&rarr;19h<br/><span style="font-size:.85rem;color:var(--gris)">Piano jazz chaque jeudi</span></div></div></div>
     <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.2 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="cl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="cv">02 97 68 24 23</a></div></div>
-    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="cl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="cv">cardinalvannes@gmail.com</a></div></div>
+    <div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="cl">Email</div><a href="/cdn-cgi/l/email-protection#fa999b889e93949b968c9b94949f89ba9d979b9396d4999597" class="cv"><span class="__cf_email__" data-cfemail="c6a5a7b4a2afa8a7aab0a7a8a8a3b586a1aba7afaae8a5a9ab">[email&#160;protected]</span></a></div></div>
     <div class="cmap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy" title="Carte"></iframe></div>
   </div>
   <div>
@@ -653,7 +662,7 @@ a.cv:hover{color:var(--orcl)}
   </div>
 </div>
 <footer>
-  <div class="foot-inner"><div class="foot-brand"><p>Bar &middot; Brasserie &middot; Vannes<br/>7 place Saint-Pierre</p></div><div class="foot-col"><h4>Horaires</h4><p>Lun &ndash; Sam : 9h &rarr; 23h</p><p>Dim : 9h30 &rarr; 19h</p></div><div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="mailto:cardinalvannes@gmail.com">cardinalvannes@gmail.com</a></div></div>
+  <div class="foot-inner"><div class="foot-brand"><p>Bar &middot; Brasserie &middot; Vannes<br/>7 place Saint-Pierre</p></div><div class="foot-col"><h4>Horaires</h4><p>Lun &ndash; Sam : 9h &rarr; 23h</p><p>Dim : 9h30 &rarr; 19h</p></div><div class="foot-col"><h4>Contact</h4><a href="tel:0297682423">02 97 68 24 23</a><a href="/cdn-cgi/l/email-protection#8eedeffceae7e0efe2f8efe0e0ebfdcee9e3efe7e2a0ede1e3"><span class="__cf_email__" data-cfemail="8deeecffe9e4e3ece1fbece3e3e8fecdeae0ece4e1a3eee2e0">[email&#160;protected]</span></a></div></div>
   <div class="foot-bottom"><div class="foot-soc"><a href="https://instagram.com/lecardinal_vannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://facebook.com/lecardinalvannes" target="_blank"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a></div><div class="foot-leg"><a data-goto="mentions">Mentions l&eacute;gales</a> &nbsp;&middot;&nbsp; &copy; 2025 Le Cardinal Vannes</div></div>
 </footer>
 </div>
@@ -675,7 +684,7 @@ a.cv:hover{color:var(--orcl)}
   <div class="bba bbm" data-goto="menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Le menu</div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function() {
   function goTo(page, tab) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -724,20 +733,4 @@ a.cv:hover{color:var(--orcl)}
   document.addEventListener('DOMContentLoaded', function() {
     var hb = document.getElementById('hbg'), mm = document.getElementById('mm'), mmx = document.getElementById('mmx');
     if (hb && mm) { hb.addEventListener('click', function() { hb.classList.toggle('open'); mm.classList.toggle('open'); document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : ''; }); }
-    if (mmx) mmx.addEventListener('click', closeMM);
-    var form = document.getElementById('contact-form');
-    if (form) { form.addEventListener('submit', function(e) { e.preventDefault(); var btn = form.querySelector('.fsub'); btn.textContent = 'Message envoy\u00e9 \u2713'; btn.style.background = '#4a7c59'; btn.disabled = true; setTimeout(function() { btn.textContent = 'Envoyer le message'; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000); }); }
-    var lastY = 0;
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('nav'), bbar = document.getElementById('bbar');
-      var active = document.querySelector('.page.active');
-      if (nav && active && active.id === 'page-accueil') nav.classList.toggle('scrolled', window.scrollY > 60);
-      if (bbar) bbar.style.transform = (window.scrollY > lastY && window.scrollY > 200) ? 'translateY(100%)' : 'translateY(0)';
-      lastY = window.scrollY;
-    });
-    initReveal();
-  });
-})();
-</script>
-</body>
-</html>
+    if (mmx) mmx.addEventListener('click', closeM
