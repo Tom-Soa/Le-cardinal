@@ -102,10 +102,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:fl
 .h-author{text-align:center;font-size:.62rem;letter-spacing:.3em;color:var(--gris);text-transform:uppercase;margin-bottom:24px}
 
 /* ── SECTION MENU APERCU (brun foncé) ── */
-.s-menu-preview{background:var(--brun2);padding:72px 24px}
+.s-menu-preview{position:relative;padding:72px 24px;overflow:hidden}
+.s-menu-preview::before{content:'';position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1800&q=70');background-size:cover;background-position:center 60%;filter:brightness(.22) saturate(.6)}
+.s-menu-preview > *{position:relative;z-index:1}
 .s-menu-preview .sec-title{color:var(--creme)}
-.s-menu-preview .sec-body{color:rgba(245,239,228,.7)}
+.s-menu-preview .sec-body{color:rgba(245,239,228,.75)}
 .s-menu-preview .eyebrow{color:var(--or)}
+.s-menu-preview .msi-caption{color:rgba(245,239,228,.55)}
 .menu-visual-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:28px auto 0}
 .mv-card{position:relative;border-radius:3px;overflow:hidden;cursor:pointer;aspect-ratio:1}
 .mv-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
@@ -119,9 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:fl
 .menu-single-img{position:relative;max-width:900px;margin:28px auto 0;border-radius:4px;overflow:hidden;cursor:pointer;aspect-ratio:16/7}
 .menu-single-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .menu-single-img:hover img{transform:scale(1.03)}
-.menu-single-img::after{content:'';position:absolute;inset:0;background:rgba(13,10,7,.42)}
-.msi-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:24px;z-index:1}
-.msi-label{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;color:rgba(245,239,228,.8);text-transform:uppercase}
+.msi-caption{text-align:center;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;color:var(--gris);text-transform:uppercase;margin-top:14px}
 
 /* ── GALERIE (gris très clair) ── */
 .s-galerie{background:#f7f3ee;padding:72px 24px}
@@ -188,9 +189,15 @@ footer{background:var(--noir);border-top:1px solid rgba(201,168,76,.1);padding:4
 .hist-bloc h3 em{font-style:italic;color:var(--or)}
 .hist-bloc p{font-size:.83rem;line-height:2;color:var(--txt2)}
 .hist-bloc img{width:100%;border-radius:2px;aspect-ratio:4/3;object-fit:cover;max-height:200px}
-.hist-mosaic{background:#f7f3ee;padding:52px 24px}
-.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:520px;margin:0 auto}
-.mosaic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:2px}
+.equipe-section{background:#f7f3ee;padding:64px 24px}
+.eq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:760px;margin:32px auto 0}
+@media(min-width:640px){.eq-grid{grid-template-columns:repeat(4,1fr)}}
+.eq-card{background:#fff;border:1px solid var(--border);border-radius:3px;overflow:hidden;text-align:center}
+.eq-card img{width:100%;aspect-ratio:1;object-fit:cover;object-position:top}
+.eq-body{padding:16px 12px}
+.eq-nom{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.12em;color:var(--txt);margin-bottom:3px}
+.eq-poste{font-size:.6rem;letter-spacing:.22em;color:var(--or);text-transform:uppercase;margin-bottom:8px;font-family:'Cinzel',serif}
+.eq-bio{font-size:.74rem;line-height:1.7;color:var(--gris)}
 .hist-quote-wrap{background:#fff;padding:44px 24px;text-align:center}
 .hist-quote-wrap blockquote{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--or);max-width:480px;margin:0 auto 8px;line-height:1.7}
 .hist-quote-wrap p{font-size:.62rem;letter-spacing:.28em;color:var(--gris);text-transform:uppercase}
@@ -337,7 +344,7 @@ a.c-val:hover{color:var(--or)}
   <div class="qi-grid">
     <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="qi-lbl">Lun &ndash; Sam</div><div class="qi-val">9h &rarr; 23h</div></div>
     <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div><div class="qi-lbl">Dimanche</div><div class="qi-val">9h30 &rarr; 19h</div></div>
-    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="qi-lbl">Adresse</div><div class="qi-val" style="white-space:nowrap">7 pl. Saint-Pierre</div></div>
+    <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="qi-lbl">Adresse</div><div class="qi-val" style="white-space:nowrap;font-size:.82rem">7 place Saint-Pierre</div></div>
     <div class="qi-item"><div class="qi-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="qi-lbl">R&eacute;server</div><div class="qi-val" style="white-space:nowrap">02 97 68 24 23</div></div>
   </div>
 </div>
@@ -363,10 +370,8 @@ a.c-val:hover{color:var(--or)}
   <p class="sec-body reveal">Produits frais, cuisine du march&eacute;, hu&icirc;tres de Baden, burgers maison, cave &agrave; vins &mdash; pour tous les moments de la journ&eacute;e.</p>
   <div class="menu-single-img reveal" data-goto="menu">
     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80" alt="La carte du Cardinal"/>
-    <div class="msi-overlay">
-      <div class="msi-label">Entr&eacute;es &middot; Viandes &middot; Poissons &middot; Desserts &middot; Glaces</div>
-    </div>
   </div>
+  <p class="msi-caption reveal">Entr&eacute;es &middot; Viandes &middot; Poissons &middot; Desserts &middot; Glaces</p>
   <div style="text-align:center;margin-top:28px" class="reveal"><button class="btn-p" data-goto="menu">Voir la carte compl&egrave;te</button></div>
 </section>
 
@@ -456,12 +461,51 @@ a.c-val:hover{color:var(--or)}
     </div>
   </div>
 </div>
-<div class="hist-mosaic">
-  <div class="mosaic">
-    <img src="https://images.unsplash.com/photo-1550966871-3ed3cfd6d50c?auto=format&fit=crop&w=600&q=80" alt=""/>
-    <img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?auto=format&fit=crop&w=600&q=80" alt=""/>
-    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt=""/>
-    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=600&q=80" alt=""/>
+<div class="equipe-section">
+  <p class="eyebrow" style="text-align:center">L'&eacute;quipe</p>
+  <h2 class="sec-title">Ceux qui font <em>Le Cardinal</em></h2>
+  <p class="sec-body">Des passionn&eacute;s du service et de la cuisine &mdash; heureux de vous accueillir chaque jour place Saint-Pierre.</p>
+  <div class="eq-grid">
+    <div class="eq-card reveal">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Micka&euml;l Cousin"/>
+      <div class="eq-body">
+        <div class="eq-nom">Micka&euml;l Cousin</div>
+        <div class="eq-poste">G&eacute;rant &amp; Fondateur</div>
+        <div class="eq-bio">Passionn&eacute; d'hospitalit&eacute;, il a imagin&eacute; Le Cardinal comme un lieu chaleureux et in&eacute;dit, face &agrave; la cath&eacute;drale.</div>
+      </div>
+    </div>
+    <div class="eq-card reveal">
+      <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=400&q=80" alt="Chef"/>
+      <div class="eq-body">
+        <div class="eq-nom">Florian</div>
+        <div class="eq-poste">Chef Cuisinier</div>
+        <div class="eq-bio">Passionn&eacute; de cuisine, voyages et musique. Il choisit les recettes et ex&eacute;cute les plats avec une brigade soud&eacute;e.</div>
+      </div>
+    </div>
+    <div class="eq-card reveal">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Responsable de salle"/>
+      <div class="eq-body">
+        <div class="eq-nom">Antoine</div>
+        <div class="eq-poste">Responsable de Salle</div>
+        <div class="eq-bio">Gestion de l'&eacute;quipe de salle et des commandes. Au service de votre confort et de votre plaisir.</div>
+      </div>
+    </div>
+    <div class="eq-card reveal">
+      <img src="https://images.unsplash.com/photo-1583394293214-c1c25c8e2361?auto=format&fit=crop&w=400&q=80" alt="Barman"/>
+      <div class="eq-body">
+        <div class="eq-nom">Lucas</div>
+        <div class="eq-poste">Barman</div>
+        <div class="eq-bio">Ma&icirc;tre des cocktails et des vins. Il saura vous conseiller avec le sourire sur les meilleurs accords.</div>
+      </div>
+    </div>
+    <div class="eq-card reveal">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Serveuse"/>
+      <div class="eq-body">
+        <div class="eq-nom">Marie</div>
+        <div class="eq-poste">Serveuse</div>
+        <div class="eq-bio">Toujours souriante et attentionn&eacute;e, elle veille &agrave; ce que votre exp&eacute;rience soit parfaite du d&eacute;but &agrave; la fin.</div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="hist-quote-wrap reveal">
@@ -808,7 +852,7 @@ a.c-val:hover{color:var(--or)}
   <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="c-lbl">Adresse</div><div class="c-val">7 place Saint-Pierre, 56000 Vannes &mdash; Face &agrave; la Cath&eacute;drale</div></div></div>
   <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="c-lbl">Horaires</div><div class="c-val">Lun&ndash;Sam : 9h&ndash;23h &nbsp;&middot;&nbsp; Dimanche : 9h30&ndash;19h</div></div></div>
   <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a2 2 0 011.72-2.19h3a2 2 0 012 1.72c.12.97.32 1.92.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.38 1.84.58 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="c-lbl">T&eacute;l&eacute;phone</div><a href="tel:0297682423" class="c-val">02 97 68 24 23</a></div></div>
-  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="c-lbl">Email</div><a href="mailto:cardinalvannes@gmail.com" class="c-val">cardinalvannes@gmail.com</a></div></div>
+  <div class="c-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="c-lbl">Email</div><a href="/cdn-cgi/l/email-protection#d0b3b1a2b4b9beb1bca6b1bebeb5a390b7bdb1b9bcfeb3bfbd" class="c-val"><span class="__cf_email__" data-cfemail="c2a1a3b0a6abaca3aeb4a3acaca7b182a5afa3abaeeca1adaf">[email&#160;protected]</span></a></div></div>
   <div class="c-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.06!2d-2.7642!3d47.6577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4811e9a4f3d14b35%3A0xe8c2b0d26b36c8e5!2sBrasserie%20Le%20Cardinal!5e0!3m2!1sfr!2sfr!4v1" allowfullscreen loading="lazy"></iframe></div>
   <h2 class="c-form-title">Nous <em>&eacute;crire</em></h2>
   <form id="contact-form">
@@ -834,11 +878,11 @@ a.c-val:hover{color:var(--or)}
 <div class="page" id="page-mentions">
 <div class="ml-hero-wrap"><h1>Mentions <em>L&eacute;gales</em></h1></div>
 <div class="ml-body">
-  <div class="ml-sec"><h2>Identification</h2><p>D&eacute;nomination : La Brasserie Le Cardinal<br/>Responsable : M. Mickael Cousin<br/>Adresse : 7 place Saint-Pierre, 56000 Vannes<br/>T&eacute;l : 02 97 68 24 23 &mdash; Email : cardinalvannes@gmail.com</p></div>
+  <div class="ml-sec"><h2>Identification</h2><p>D&eacute;nomination : La Brasserie Le Cardinal<br/>Responsable : M. Mickael Cousin<br/>Adresse : 7 place Saint-Pierre, 56000 Vannes<br/>T&eacute;l : 02 97 68 24 23 &mdash; Email : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73101201171a1d121f05121d1d160033141e121a1f5d101c1e">[email&#160;protected]</a></p></div>
   <div class="ml-sec"><h2>H&eacute;bergement</h2><p>OVH SAS &mdash; 2 rue Kellermann, 59100 Roubaix, France</p></div>
   <div class="ml-sec"><h2>Cr&eacute;dits</h2><p>Conception &amp; r&eacute;alisation : Agence Close-up &mdash; 02 90 73 53 13<br/>Images : Unsplash (licence libre)</p></div>
   <div class="ml-sec"><h2>Propri&eacute;t&eacute; intellectuelle</h2><p>L'ensemble du site est prot&eacute;g&eacute; par le droit d'auteur. Toute reproduction est interdite sans autorisation pr&eacute;alable.</p></div>
-  <div class="ml-sec"><h2>Donn&eacute;es personnelles</h2><p>Conform&eacute;ment au RGPD, vous disposez d'un droit d'acc&egrave;s, de rectification et de suppression. Contact : cardinalvannes@gmail.com</p></div>
+  <div class="ml-sec"><h2>Donn&eacute;es personnelles</h2><p>Conform&eacute;ment au RGPD, vous disposez d'un droit d'acc&egrave;s, de rectification et de suppression. Contact : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="04676576606d6a656872656a6a6177446369656d682a676b69">[email&#160;protected]</a></p></div>
   <p style="margin-top:24px"><a data-page="accueil" style="color:var(--or);cursor:pointer;font-size:.83rem">&larr; Retour &agrave; l'accueil</a></p>
 </div>
 </div>
