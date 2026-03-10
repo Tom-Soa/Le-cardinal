@@ -684,7 +684,7 @@ a.cv:hover{color:var(--orcl)}
   <div class="bba bbm" data-goto="menu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>Le menu</div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"><script>
 (function() {
   function goTo(page, tab) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -733,4 +733,20 @@ a.cv:hover{color:var(--orcl)}
   document.addEventListener('DOMContentLoaded', function() {
     var hb = document.getElementById('hbg'), mm = document.getElementById('mm'), mmx = document.getElementById('mmx');
     if (hb && mm) { hb.addEventListener('click', function() { hb.classList.toggle('open'); mm.classList.toggle('open'); document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : ''; }); }
-    if (mmx) mmx.addEventListener('click', closeM
+    if (mmx) mmx.addEventListener('click', closeMM);
+    var form = document.getElementById('contact-form');
+    if (form) { form.addEventListener('submit', function(e) { e.preventDefault(); var btn = form.querySelector('.fsub'); btn.textContent = 'Message envoyé ✓'; btn.style.background = '#4a7c59'; btn.disabled = true; setTimeout(function() { btn.textContent = 'Envoyer le message'; btn.style.background = ''; btn.disabled = false; form.reset(); }, 3000); }); }
+    var lastY = 0;
+    window.addEventListener('scroll', function() {
+      var nav = document.getElementById('nav'), bbar = document.getElementById('bbar');
+      var active = document.querySelector('.page.active');
+      if (nav && active && active.id === 'page-accueil') nav.classList.toggle('scrolled', window.scrollY > 60);
+      if (bbar) bbar.style.transform = (window.scrollY > lastY && window.scrollY > 200) ? 'translateY(100%)' : 'translateY(0)';
+      lastY = window.scrollY;
+    });
+    initReveal();
+  });
+})();
+</script>
+</body>
+</html>
